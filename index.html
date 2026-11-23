@@ -1,222 +1,280 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Valentin Georges | Portfolio & Cours BTS SIO SISR</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-<!-- BARRE DE NAVIGATION -->
-        <nav class="nav-barre nav-droite">
-            <a href="ressources.html" class="btn btn-primary">Ressources Utiles</a>
-        </nav>
+      <!-- BARRE DE NAVIGATION -->
+      <nav class="nav-barre nav-droite">
+        <a href="ressources.html" class="btn btn-primary">Ressources Utiles</a>
+      </nav>
 
-        <header>
-            <h1>Valentin Georges</h1>
-            <p>Technicien Support IT & Étudiant BTS SIO option SISR</p>
-            <span class="badge-header">Infrastructure • Systèmes & Réseaux </span>
-        </header>
+      <header>
+        <h1>Valentin Georges</h1>
+        <p>Technicien Support IT & Étudiant BTS SIO option SISR</p>
+        <span class="badge-header">Infrastructure • Systèmes & Réseaux </span>
+      </header>
 
-        <!-- =========================================================
+      <!-- =========================================================
              SECTION 1 : MES COURS BTS SIO SISR (CLIC POUR DÉPLIER)
              ========================================================= -->
-        <h2 class="categorie-titre">Mes Cours & TP — BTS SIO SISR</h2>
+      <h2 class="categorie-titre">Mes Cours & TP — BTS SIO SISR</h2>
 
-        <section class="grid">
+      <section class="grid">
+        <!-- BLOC 1 : SUPPORT & PATRIMOINE IT -->
+        <details class="card">
+          <summary>
+            <div>
+              <h2>Bloc 1 — Support & Patrimoine IT</h2>
+              <p>
+                Gestion du parc informatique, assistance utilisateurs
+                (Helpdesk), GLPI et maintenance des postes.
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">3 séances</span>
+              <span class="tag">Support</span>
+              <span class="tag">Parc IT</span>
+            </div>
+          </summary>
+          <div class="card-liste-cours">
+            <a href="cours/installation-vm-vmware.html" class="btn btn-primary"
+              >TP 1 : Installation VM VMware Workstation</a
+            >
+            <a href="cours/tp-debian-grep.html" class="btn btn-primary"
+              >TP 2 : Utilisation de grep sous Debian</a
+            >
+            <a
+              href="cours/config-ip-statique-debian.html"
+              class="btn btn-primary"
+              >TP 3 : Configuration IP Statique sous Debian</a
+            >
+          </div>
+        </details>
+        <!-- BLOC 2 : SYSTÈMES & RÉSEAUX -->
+        <details class="card">
+          <summary>
+            <div>
+              <h2>Bloc 2 — Systèmes & Réseaux</h2>
+              <p>
+                Commutation Cisco, segmentation VLAN, liens trunk 802.1Q,
+                routage inter-VLAN (Router-on-a-stick & Switch L3).
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">3 séances</span>
+              <span class="tag">Cisco IOS</span>
+              <span class="tag">Réseau</span>
+            </div>
+          </summary>
+          <div class="card-liste-cours">
+            <a href="cours/cours-adresse-ip.html" class="btn btn-primary"
+              >TP 1 : L'Adresse IP (IPv4, Masque, ARP, DHCP)</a
+            >
+            <a href="cours/tp-vlan-cisco1.html" class="btn btn-primary"
+              >TP 2 : Création VLANs & Trunk</a
+            >
+            <a href="cours/tp-vlan-cisco2.html" class="btn btn-primary"
+              >TP 3 : Routage Inter-VLAN & L3</a
+            >
+          </div>
+        </details>
 
-            <!-- BLOC 1 : SUPPORT & PATRIMOINE IT -->
-            <details class="card">
-                <summary>
-                    <div>
-                        <h2>Bloc 1 — Support & Patrimoine IT</h2>
-                        <p>Gestion du parc informatique, assistance utilisateurs (Helpdesk), GLPI et maintenance des postes.</p>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">3 séances</span>
-                        <span class="tag">Support</span>
-                        <span class="tag">Parc IT</span>
-                    </div> 
-                </summary>
-                <div class="card-liste-cours">
-                    <a href="cours/installation-vm-vmware.html" class="btn btn-primary">TP 1 : Installation VM VMware Workstation</a>
-                    <a href="cours/tp-debian-grep.html" class="btn btn-primary">TP 2 : Utilisation de grep sous Debian</a>
-                    <a href="cours/config-ip-statique-debian.html" class="btn btn-primary">TP 3:Configuration IP Statique sous Debian</a>
-                </div>
-            </details>
-            <!-- BLOC 2 : SYSTÈMES & RÉSEAUX -->
-            <details class="card">
-                <summary>
-                    <div>
-                        <h2>Bloc 2 — Systèmes & Réseaux</h2>
-                        <p>Commutation Cisco, segmentation VLAN, liens trunk 802.1Q, routage inter-VLAN (Router-on-a-stick & Switch L3).</p>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">3 séances</span>
-                        <span class="tag">Cisco IOS</span>
-                        <span class="tag">Réseau</span>
-                    </div>
-                </summary>
-                <div class="card-liste-cours">
-                    <a href="cours/cours-adresse-ip.html" class="btn btn-primary">TP 1 : L'Adresse IP (IPv4, Masque, ARP, DHCP)</a>
-                    <a href="cours/tp-vlan-cisco1.html" class="btn btn-primary">TP 2 : Création VLANs & Trunk</a>
-                    <a href="cours/tp-vlan-cisco2.html" class="btn btn-primary">TP 3 : Routage Inter-VLAN & L3</a>
-                </div>
-            </details>
+        <!-- BLOC 3 : CYBERSÉCURITÉ -->
+        <details class="card">
+          <summary>
+            <div>
+              <h2>Bloc 3 — Cybersécurité SISR</h2>
+              <p>
+                Sécurisation des infrastructures, durcissement d'équipements,
+                ACL, pare-feu, VPN et analyse de trames.
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">0 séance</span>
+              <span class="tag">Sécurité</span>
+              <span class="tag">Wireshark</span>
+            </div>
+          </summary>
+          <div class="card-liste-cours">
+            <span class="btn btn-secondary"
+              >Aucun cours publié pour le moment</span
+            >
+          </div>
+        </details>
 
+        <!-- ATELIER PROFESSIONNEL -->
+        <details class="card">
+          <summary>
+            <div>
+              <h2>Atelier Professionnel (AP)</h2>
+              <p>
+                Mises en situation professionnelles, projets d'infrastructure en
+                équipe et documentation technique.
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">0 séance</span>
+              <span class="tag">Projet</span>
+              <span class="tag">Infrastructure</span>
+            </div>
+          </summary>
+          <div class="card-liste-cours">
+            <a href="cours/tp1-steganographie.html" class="btn btn-primary"
+              >TP 1 : Stéganographie</a
+            >
+            <a href="cours/tp2-intrusion-windows.html" class="btn btn-primary"
+              >TP 2 : Intrusion sous Windows</a
+            >
+            <a href="cours/tp3-cookies-rgpd.html" class="btn btn-primary"
+              >TP 3 : Cookies & RGPD</a
+            >
+            <a href="cours/tp4-git.html" class="btn btn-primary"
+              >TP 4 : Gestion de Versions avec Git</a
+            >
+          </div>
+        </details>
 
-            <!-- BLOC 3 : CYBERSÉCURITÉ -->
-            <details class="card">
-                <summary>
-                    <div>
-                        <h2>Bloc 3 — Cybersécurité SISR</h2>
-                        <p>Sécurisation des infrastructures, durcissement d'équipements, ACL, pare-feu, VPN et analyse de trames.</p>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">0 séance</span>
-                        <span class="tag">Sécurité</span>
-                        <span class="tag">Wireshark</span>
-                    </div>
-                </summary>
-                <div class="card-liste-cours">
-                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
-                </div>
-            </details>
+        <!-- CEJM -->
+        <details class="card">
+          <summary>
+            <div>
+              <h2>CEJM</h2>
+              <p>
+                Culture Économique, Juridique et Managériale : environnement des
+                entreprises, contrats et droit du numérique.
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">0 séance</span>
+              <span class="tag">Économie</span>
+              <span class="tag">Droit</span>
+            </div>
+          </summary>
+          <div class="card-liste-cours">
+            <span class="btn btn-secondary"
+              >Aucun cours publié pour le moment</span
+            >
+          </div>
+        </details>
 
-            <!-- ATELIER PROFESSIONNEL -->
-            <details class="card">
-                <summary>
-                    <div>
-                        <h2>Atelier Professionnel (AP)</h2>
-                        <p>Mises en situation professionnelles, projets d'infrastructure en équipe et documentation technique.</p>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">0 séance</span>
-                        <span class="tag">Projet</span>
-                        <span class="tag">Infrastructure</span>
-                    </div>
-                </summary>
-                <div class="card-liste-cours">
-                    <a href="cours/tp1-steganographie.html" class="btn btn-primary">TP 1 : Stéganographie</a>
-                    <a href="cours/tp2-intrusion-windows.html" class="btn btn-primary">TP 2 : Intrusion sous Windows</a>
-                    <a href="cours/tp3-cookies-rgpd.html" class="btn btn-primary">TP 3 : Cookies & RGPD</a>
-                    <a href="cours/tp4-git.html" class="btn btn-primary">TP 4 : Gestion de Versions avec Git</a>
-                </div>
-            </details>
+        <!-- CGE -->
+        <details class="card">
+          <summary>
+            <div>
+              <h2>Culture Générale & Expression</h2>
+              <p>
+                Synthèse de documents, écriture personnelle et méthodologie de
+                l'épreuve écrite BTS.
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">0 séance</span>
+              <span class="tag">Synthèse</span>
+            </div>
+          </summary>
+          <div class="card-liste-cours">
+            <span class="btn btn-secondary"
+              >Aucun cours publié pour le moment</span
+            >
+          </div>
+        </details>
 
-            <!-- CEJM -->
-            <details class="card">
-                <summary>
-                    <div>
-                        <h2>CEJM</h2>
-                        <p>Culture Économique, Juridique et Managériale : environnement des entreprises, contrats et droit du numérique.</p>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">0 séance</span>
-                        <span class="tag">Économie</span>
-                        <span class="tag">Droit</span>
-                    </div>
-                </summary>
-                <div class="card-liste-cours">
-                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
-                </div>
-            </details>
+        <!-- MATHÉMATIQUES -->
+        <details class="card">
+          <summary>
+            <div>
+              <h2>Mathématiques</h2>
+              <p>
+                Numération (binaire, hexadécimal), logique booléenne, graphes,
+                matrices et algorithmique.
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">0 séance</span>
+              <span class="tag">Binaire / Hexa</span>
+              <span class="tag">Logique</span>
+            </div>
+          </summary>
+          <div class="card-liste-cours">
+            <span class="btn btn-secondary"
+              >Aucun cours publié pour le moment</span
+            >
+          </div>
+        </details>
 
-            <!-- CGE -->
-            <details class="card">
-                <summary>
-                    <div>
-                        <h2>Culture Générale & Expression</h2>
-                        <p>Synthèse de documents, écriture personnelle et méthodologie de l'épreuve écrite BTS.</p>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">0 séance</span>
-                        <span class="tag">Synthèse</span>
-                    </div>
-                </summary>
-                <div class="card-liste-cours">
-                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
-                </div>
-            </details>
+        <!-- ANGLAIS -->
+        <details class="card">
+          <summary>
+            <div>
+              <h2>Anglais Technique</h2>
+              <p>
+                Vocabulaire informatique et réseau, compréhension de
+                documentation technique et expression orale.
+              </p>
+            </div>
+            <div class="tags">
+              <span class="tag">0 séance</span>
+              <span class="tag">IT English</span>
+            </div>
+          </summary>
+          <div class="card-liste-cours">
+            <span class="btn btn-secondary"
+              >Aucun cours publié pour le moment</span
+            >
+          </div>
+        </details>
+      </section>
 
-            <!-- MATHÉMATIQUES -->
-            <details class="card">
-                <summary>
-                    <div>
-                        <h2>Mathématiques</h2>
-                        <p>Numération (binaire, hexadécimal), logique booléenne, graphes, matrices et algorithmique.</p>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">0 séance</span>
-                        <span class="tag">Binaire / Hexa</span>
-                        <span class="tag">Logique</span>
-                    </div>
-                </summary>
-                <div class="card-liste-cours">
-                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
-                </div>
-            </details>
-
-            <!-- ANGLAIS -->
-            <details class="card">
-                <summary>
-                    <div>
-                        <h2>Anglais Technique</h2>
-                        <p>Vocabulaire informatique et réseau, compréhension de documentation technique et expression orale.</p>
-                    </div>
-                    <div class="tags">
-                        <span class="tag">0 séance</span>
-                        <span class="tag">IT English</span>
-                    </div>
-                </summary>
-                <div class="card-liste-cours">
-                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
-                </div>
-            </details>
-
-        </section>
-
-        <!-- =========================================================
+      <!-- =========================================================
              SECTION 2 : PROJETS & RÉALISATIONS PERSONNELLES
              ========================================================= -->
-        <h2 class="categorie-titre">Mes Projets & Labs</h2>
+      <h2 class="categorie-titre">Mes Projets & Labs</h2>
 
-        <section class="grid">
+      <section class="grid">
+        <!-- PROJET 2 : LAB VMWARE -->
+        <article class="card">
+          <div>
+            <h2>Lab Virtualisation & Active Directory</h2>
+            <p>
+              Architecture réseau multi-machines sous VMware Workstation
+              combinant Windows Server (AD DS), clients Windows 11 et serveurs
+              Debian.
+            </p>
+            <div class="tags">
+              <span class="tag">VMware</span>
+              <span class="tag">Windows Server</span>
+              <span class="tag">Active Directory</span>
+            </div>
+          </div>
+          <div class="links">
+            <a
+              href="https://github.com/GsValentin"
+              target="_blank"
+              class="btn btn-secondary"
+              >Documentation</a
+            >
+          </div>
+        </article>
+      </section>
 
-            <!-- PROJET 2 : LAB VMWARE -->
-            <article class="card">
-                <div>
-                    <h2>Lab Virtualisation & Active Directory</h2>
-                    <p>Architecture réseau multi-machines sous VMware Workstation combinant Windows Server (AD DS), clients Windows 11 et serveurs Debian.</p>
-                    <div class="tags">
-                        <span class="tag">VMware</span>
-                        <span class="tag">Windows Server</span>
-                        <span class="tag">Active Directory</span>
-                    </div>
-                </div>
-                <div class="links">
-                    <a href="https://github.com/GsValentin" target="_blank" class="btn btn-secondary">Documentation</a>
-                </div>
-            </article>
-
-        </section>
-
-        <footer>
-            <p>© 2026 Valentin Georges — Hébergé sur GitHub Pages</p>
-        </footer>
+      <footer>
+        <p>© 2026 Valentin Georges — Hébergé sur GitHub Pages</p>
+      </footer>
     </div>
-<script>
-        document.querySelectorAll('details.card').forEach(card => {
-            const nbCours = card.querySelectorAll('.card-liste-cours a.btn').length;
-            const premierTag = card.querySelector('.tags .tag');
-            if (premierTag) {
-                premierTag.textContent = nbCours + (nbCours > 1 ? ' séances' : ' séance');
-            }
-        });
+    <script>
+      document.querySelectorAll("details.card").forEach((card) => {
+        const nbCours = card.querySelectorAll(".card-liste-cours a.btn").length;
+        const premierTag = card.querySelector(".tags .tag");
+        if (premierTag) {
+          premierTag.textContent =
+            nbCours + (nbCours > 1 ? " séances" : " séance");
+        }
+      });
     </script>
-</body>
-</body>
+  </body>
 </html>
