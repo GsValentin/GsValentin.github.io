@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Stéganographie & Codage d'Images | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>Images & Sécurité : Stéganographie Numérique</h1>
+            <p>Dissimulation par bit de poids faible (LSB), codage RVB/ASCII et impact de la compression (PNG vs JPEG)</p>
+            <span class="badge-header">BTS SIO SISR • Bloc 3 • Cybersécurité & Codage</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <h2>1. Stéganographie vs Cryptographie</h2>
+            <p>Bien que complémentaires, ces deux disciplines poursuivent des objectifs distincts :</p>
+            <ul>
+                <li><strong>Cryptographie :</strong> Rendre un message inintelligible à toute personne ne possédant pas la clé de déchiffrement (l'art du secret — <em>enfermer un message dans un coffre-fort</em>)[cite: 97].</li>
+                <li><strong>Stéganographie :</strong> Dissimuler l'existence même d'un message caché au sein d'un fichier anodin comme une image, un son ou une vidéo (l'art de la dissimulation — <em>enterrer le coffre dans le jardin</em>)[cite: 97].</li>
+            </ul>
+
+            <h2>2. Codage RVB & Principe LSB (Least Significant Bit)</h2>
+            <p>Une image numérique est une grille de <strong>pixels</strong> repérés par leurs coordonnées $(x, y)$[cite: 97]. En codage <strong>RVB (Rouge, Vert, Bleu)</strong>, chaque composante est codée sur 1 octet (de <code>0</code> à <code>255</code> en décimal, ou <code>00</code> à <code>FF</code> en hexadécimal)[cite: 98].</p>
+            <p>Modifier de <code>+1</code> ou <code>-1</code> la valeur d'une composante (par exemple le Bleu) est totalement imperceptible pour l'œil humain[cite: 98]. La technique <strong>LSB (bit de poids faible)</strong> consiste à remplacer le dernier bit (bit de droite, poids $2^0 = 1$) de la composante couleur par un bit du message secret[cite: 98] :</p>
+            <ul>
+                <li>Si le bit à cacher vaut <code>0</code> → la composante devient un nombre <strong>pair</strong> (se termine par <code>0</code> en binaire)[cite: 98].</li>
+                <li>Si le bit à cacher vaut <code>1</code> → la composante devient un nombre <strong>impair</strong> (se termine par <code>1</code> en binaire)[cite: 98].</li>
+            </ul>
+
+            <h2>3. Méthode d'extraction d'un message caché (GIMP)</h2>
+            <p>Dans une image dissimulant un texte codé en <strong>ASCII (8 bits par caractère)</strong> sur la composante bleue[cite: 98] :</p>
+            <ol>
+                <li><strong>Lire la longueur $l$ du message :</strong> Relever la composante bleue des 8 premiers pixels de la ligne 0 (ordonnée $y = 0$)[cite: 98]. Extraire leur bit de poids faible (pair = <code>0</code>, impair = <code>1</code>) pour reconstituer l'octet donnant le nombre de caractères $l$[cite: 98].</li>
+                <li><strong>Extraire les bits du texte :</strong> Sur la ligne 1 (ordonnée $y = 1$), relever la composante bleue des $8 \times l$ premiers pixels et noter leur bit de poids faible[cite: 98].</li>
+                <li><strong>Convertir en caractères :</strong> Regrouper les bits par paquets de 8 (octets), convertir chaque octet en décimal puis lire le caractère correspondant dans la <strong>table ASCII</strong>[cite: 98].</li>
+            </ol>
+
+            <div class="encadre">
+                <strong>Raccourcis utiles dans GIMP :</strong><br>
+                • <strong>Zoom maximal (25600%) :</strong> Outil Loupe + clic (maintenir <code>Ctrl</code> pour dézoomer) afin de distinguer chaque pixel individuellement[cite: 97].<br>
+                • <strong>Lire la valeur RVB exacte :</strong> Outil Pipette + <code>Maj</code> (Shift) + clic sur le pixel ciblé[cite: 98].
+            </div>
+
+            <h2>4. Choix du format d'image : Compression avec ou sans perte</h2>
+            <p>La survie d'un message caché en LSB dépend directement de l'algorithme de sauvegarde utilisé[cite: 99] :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Type de compression</th>
+                        <th>Compatibilité Stéganographie LSB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>PNG</strong> (<em>Portable Network Graphics</em>)</td>
+                        <td>Sans perte (<em>Lossless</em>)[cite: 99]</td>
+                        <td><strong>Compatible :</strong> Conserve la valeur exacte de chaque pixel au bit près[cite: 99].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BMP</strong> (<em>Bitmap</em>)</td>
+                        <td>Aucune compression (brut)[cite: 99]</td>
+                        <td><strong>Compatible :</strong> Fichier très volumineux mais intact[cite: 99].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>JPEG / JPG</strong></td>
+                        <td>Avec perte (<em>Lossy</em>)[cite: 99]</td>
+                        <td><strong>Incompatible :</strong> L'algorithme modifie légèrement les couleurs voisines pour alléger le fichier, ce qui détruit les bits de poids faible et corrompt le message caché[cite: 99].</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><em>Note : Cette technique s'applique également à d'autres supports numériques non compressés avec perte, comme les fichiers audio (<strong>WAV</strong>) ou vidéo, utilisés parfois en cybersécurité pour dissimuler des charges utiles (malware / exfiltration de données).</em></p>
+
+            <h2>5. Énoncé complet du TP (PDF)</h2>
+            <p>Consulte directement le sujet complet ci-dessous ou <a href="../docs/tp1-steganographie.pdf" target="_blank">ouvre le PDF dans un nouvel onglet</a> :</p>
+            <iframe src="../docs/tp1-steganographie.pdf" class="pdf-cadre" title="TP Stéganographie GIMP"></iframe>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>
