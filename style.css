@@ -1,0 +1,258 @@
+/* ==========================================================================
+   DESIGN SYSTEM "ESPRESSO & CARAMEL" (INSPIRATION FINARY)
+   ========================================================================== */
+:root {
+    /* Fonds (Brun profond & Espresso) */
+    --bg-main: #120F0D;          /* Fond principal très sombre et chaud */
+    --bg-surface: #1A1613;       /* Fond des cartes et panneaux */
+    --bg-surface-hover: #221D19; /* Survol des cartes */
+    --bg-code: #0D0B09;          /* Fond des blocs de code */
+
+    /* Textes (Crème, Lin & Taupe) */
+    --text-primary: #F5EFE6;     /* Blanc crème doux (lisible sans agresser) */
+    --text-secondary: #B8ADA1;   /* Beige grisé / taupe pour les descriptions */
+    --text-muted: #7D7267;       /* Brun clair discret */
+
+    /* Accents (Caramel, Or doux & Sable) */
+    --accent-caramel: #D4A373;   /* Caramel signature */
+    --accent-hover: #E2B68A;     /* Caramel éclairci au survol */
+    --accent-subtle: rgba(212, 163, 115, 0.12); /* Teinte de fond légère */
+
+    /* Bordures & Ombres */
+    --border-subtle: #2C2520;
+    --border-accent: rgba(212, 163, 115, 0.45);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* --- Réinitialisation & Base --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.65;
+    padding: 3rem 1.25rem;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+/* --- Typographie globale --- */
+h1, h2, h3, h4 {
+    color: var(--text-primary);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+a {
+    color: var(--accent-caramel);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* --- En-tête (Header) --- */
+header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+header h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.6rem;
+    background: linear-gradient(135deg, #F5EFE6 30%, #D4A373 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.badge-header {
+    display: inline-block;
+    background-color: var(--accent-subtle);
+    color: var(--accent-caramel);
+    border: 1px solid var(--border-accent);
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 1.25rem;
+}
+
+/* --- Grille & Cartes Projets --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    background-color: var(--bg-surface-hover);
+    border-color: var(--border-accent);
+}
+
+.card h2, .card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Étiquettes (Tags) --- */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.6rem;
+}
+
+.tag {
+    background-color: var(--bg-main);
+    color: var(--accent-caramel);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+}
+
+/* --- Boutons d'action --- */
+.links {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--accent-caramel);
+    color: #120F0D;
+    border: 1px solid var(--accent-caramel);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #120F0D;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-subtle);
+    border-color: var(--accent-caramel);
+    color: var(--accent-caramel);
+}
+
+/* --- Éléments réutilisables pour tes autres pages (Tableaux, Code, Listes) --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background-color: var(--bg-surface);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+th, td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: var(--bg-surface-hover);
+    color: var(--accent-caramel);
+    font-weight: 600;
+}
+
+pre, code {
+    font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+    background-color: var(--bg-code);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    font-size: 0.88rem;
+}
+
+code {
+    padding: 0.15rem 0.4rem;
+    color: var(--accent-caramel);
+}
+
+pre {
+    padding: 1.1rem;
+    overflow-x: auto;
+    margin: 1.25rem 0;
+    color: var(--text-primary);
+}
+
+pre code {
+    border: none;
+    padding: 0;
+    background: none;
+    color: inherit;
+}
+
+/* --- Pied de page (Footer) --- */
+footer {
+    text-align: center;
+    margin-top: 4.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
