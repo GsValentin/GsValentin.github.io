@@ -62,6 +62,19 @@ a:hover {
     color: var(--accent-hover);
 }
 
+/* --- Barre de navigation supérieure --- */
+.nav-barre {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+}
+
+.nav-barre .btn {
+    flex: 0 1 auto;
+}
+
 /* --- En-tête (Header) --- */
 header {
     text-align: center;
@@ -99,7 +112,7 @@ header p {
     margin-top: 1.25rem;
 }
 
-/* --- Grille & Cartes Projets --- */
+/* --- Grille & Cartes Projets (Portfolio) --- */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -196,7 +209,7 @@ header p {
     color: var(--accent-caramel);
 }
 
-/* --- Éléments réutilisables pour tes autres pages (Tableaux, Code, Listes) --- */
+/* --- Tableaux & Blocs de code --- */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -245,6 +258,158 @@ pre code {
     padding: 0;
     background: none;
     color: inherit;
+}
+
+/* ==========================================================================
+   COMPOSANTS RÉUTILISABLES : FICHES DE COURS & TP (.fiche-cours)
+   ========================================================================== */
+.fiche-cours {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 2.25rem;
+    box-shadow: var(--shadow-card);
+}
+
+.fiche-cours h2 {
+    color: var(--accent-caramel);
+    font-size: 1.35rem;
+    margin: 2.2rem 0 1rem 0;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.fiche-cours h2:first-child {
+    margin-top: 0;
+}
+
+.fiche-cours h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin: 1.5rem 0 0.6rem 0;
+}
+
+.fiche-cours p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.fiche-cours ul, .fiche-cours ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
+}
+
+.fiche-cours li {
+    margin-bottom: 0.45rem;
+}
+
+/* Encadré d'alerte / astuce / règle importante */
+.encadre {
+    background-color: var(--accent-subtle);
+    border-left: 3px solid var(--accent-caramel);
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.25rem 0;
+    color: var(--text-primary);
+    font-size: 0.92rem;
+}
+
+.encadre strong {
+    color: var(--accent-caramel);
+}
+
+/* Captures d'écran & Schémas dans un cours */
+.image-cours {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    margin: 1.25rem 0;
+    display: block;
+}
+
+/* Lecteur PDF intégré */
+.pdf-cadre {
+    width: 100%;
+    height: 650px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+/* ==========================================================================
+   COMPOSANTS RÉUTILISABLES : PAGE RESSOURCES & COMMANDES
+   ========================================================================== */
+.barre-recherche {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.barre-recherche:focus {
+    border-color: var(--accent-caramel);
+}
+
+.categorie-titre {
+    color: var(--accent-caramel);
+    font-size: 1.3rem;
+    margin: 2.2rem 0 1rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.commande-ligne {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.85rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: border-color 0.2s;
+}
+
+.commande-ligne:hover {
+    border-color: var(--border-accent);
+}
+
+.commande-info {
+    flex: 1;
+    min-width: 240px;
+}
+
+.commande-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.35rem;
+}
+
+.btn-copier {
+    background-color: var(--accent-subtle);
+    color: var(--accent-caramel);
+    border: 1px solid var(--border-accent);
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-copier:hover {
+    background-color: var(--accent-caramel);
+    color: #120F0D;
 }
 
 /* --- Pied de page (Footer) --- */

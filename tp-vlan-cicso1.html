@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP VLANs sur Commutateurs Cisco | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+            <a href="../ressources.html" class="btn btn-primary">Ressources & Commandes</a>
+        </nav>
+
+        <header>
+            <h1>Segmentation Réseau & VLANs Cisco</h1>
+            <p>Ports Access, lien Trunk 802.1Q, VLAN natif, Management (SVI) et VoIP sur Catalyst 2960</p>
+            <span class="badge-header">BTS SIO SISR • Cisco Packet Tracer</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <h2>1. Distinction fondamentale : Mode de port vs Rôle de VLAN</h2>
+            <p>Un commutateur neuf place tous ses ports dans le <strong>VLAN 1 (default)</strong>[cite: 9]. Segmenter le réseau consiste à découper le switch en domaines de diffusion étanches sans ajouter de matériel[cite: 5, 6].</p>
+            <div class="encadre">
+                <strong>Règle de vocabulaire :</strong> On ne dit jamais « un VLAN trunk » ou « un VLAN access »[cite: 6]. <strong>Access</strong> et <strong>Trunk</strong> sont des <em>modes de port</em> (trames non étiquetées vs étiquetées 802.1Q)[cite: 6, 14]. <strong>Données, Management, Voix, Natif et Mort</strong> sont des <em>rôles de VLAN</em>[cite: 6].
+            </div>
+
+            <h2>2. Plan des VLANs & Adressage de la maquette</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>N° VLAN</th>
+                        <th>Nom</th>
+                        <th>Rôle & Sécurité</th>
+                        <th>Sous-réseau / Équipements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>1</code></td>
+                        <td>default</td>
+                        <td>VLAN d'usine. <strong>Doit être entièrement vidé</strong> (aucun port actif)[cite: 5, 9].</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><code>10</code></td>
+                        <td>DIRECTION</td>
+                        <td>VLAN de données (Direction)[cite: 5].</td>
+                        <td><code>192.168.10.0/24</code> (PC1, PC3)[cite: 5, 6]</td>
+                    </tr>
+                    <tr>
+                        <td><code>20</code></td>
+                        <td>COMPTA</td>
+                        <td>VLAN de données (Comptabilité)[cite: 5].</td>
+                        <td><code>192.168.20.0/24</code> (PC2, PC4)[cite: 5, 6]</td>
+                    </tr>
+                    <tr>
+                        <td><code>99</code></td>
+                        <td>MGMT</td>
+                        <td>Administration à distance des switchs (SVI). Isolé des utilisateurs[cite: 5, 17].</td>
+                        <td><code>192.168.99.0/24</code> (SW1: .1, SW2: .2, PC-ADMIN: .10)[cite: 7]</td>
+                    </tr>
+                    <tr>
+                        <td><code>150</code></td>
+                        <td>VOIX</td>
+                        <td>Trafic des téléphones IP (priorisé et isolé des PC)[cite: 5, 19].</td>
+                        <td>IP Phone 7960 (derrière SW1 Fa0/2)[cite: 6, 7]</td>
+                    </tr>
+                    <tr>
+                        <td><code>999</code></td>
+                        <td>MORT</td>
+                        <td>VLAN natif du trunk et parking des ports inutilisés (<code>shutdown</code>)[cite: 5, 21].</td>
+                        <td>Ports libres (Fa0/3-4, Fa0/6-24, Gi0/2)[cite: 21]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>3. Création des VLANs & Ports Access</h2>
+            <p>Un VLAN doit être déclaré sur <strong>chaque commutateur</strong> qu'il traverse[cite: 10]. Sur un port utilisateur, on fixe toujours le mode <code>access</code> avant d'attribuer le VLAN pour éviter toute négociation DTP[cite: 12].</p>
+            <pre><code>! 1. Création des VLANs (à répéter sur SW1 et SW2)
+SW1(config)# vlan 10
+SW1(config-vlan)# name DIRECTION
+SW1(config-vlan)# vlan 20
+SW1(config-vlan)# name COMPTA
+SW1(config-vlan)# vlan 99
+SW1(config-vlan)# name MGMT
+SW1(config-vlan)# vlan 150
+SW1(config-vlan)# name VOIX
+SW1(config-vlan)# vlan 999
+SW1(config-vlan)# name MORT
+SW1(config-vlan)# exit
+
+! 2. Affectation d'un port utilisateur (mode access)
+SW1(config)# interface fastEthernet 0/1
+SW1(config-if)# switchport mode access
+SW1(config-if)# switchport access vlan 10</code></pre>
+
+            <h2>4. Lien Trunk 802.1Q & VLAN Natif</h2>
+            <p>Le lien inter-switch (<code>Gig0/1</code>, relié par câble croisé) transporte plusieurs VLANs en étiquetant les trames[cite: 8, 14]. Le VLAN natif (seul trafic non étiqueté) est déplacé vers le VLAN vide <code>999</code> pour contrer les attaques par <em>VLAN hopping</em>[cite: 14, 15].</p>
+            <pre><code>SW1(config)# interface gigabitEthernet 0/1
+SW1(config-if)# switchport mode trunk
+SW1(config-if)# switchport trunk native vlan 999
+SW1(config-if)# switchport trunk allowed vlan 10,20,99,150,999</code></pre>
+            <div class="encadre">
+                <strong>Note matériel :</strong> Sur un Catalyst 2960, la commande <code>switchport trunk encapsulation dot1q</code> est refusée car ce modèle ne gère nativement que la norme 802.1Q (contrairement aux switchs L3 gérant aussi ISL)[cite: 14].
+            </div>
+
+            <h2>5. Management (SVI), VoIP & Durcissement</h2>
+            <h3>Interface virtuelle d'administration (SVI)</h3>
+            <pre><code>SW1(config)# interface vlan 99
+SW1(config-if)# ip address 192.168.99.1 255.255.255.0
+SW1(config-if)# no shutdown</code></pre>
+
+            <h3>Port hybride Données + Voix (Téléphone IP + PC)</h3>
+            <p>Un port reste en <code>static access</code> mais porte deux VLANs : les trames non étiquetées du PC vont dans le VLAN 20, tandis que le téléphone étiquette ses paquets voix en 150 (appris via CDP)[cite: 19].</p>
+            <pre><code>SW1(config)# interface fastEthernet 0/2
+SW1(config-if)# switchport mode access
+SW1(config-if)# switchport access vlan 20
+SW1(config-if)# switchport voice vlan 150</code></pre>
+
+            <h3>Neutralisation des ports inutilisés (Double barrière)</h3>
+            <pre><code>SW1(config)# interface range fastEthernet 0/6-24
+SW1(config-if-range)# switchport mode access
+SW1(config-if-range)# switchport access vlan 999
+SW1(config-if-range)# shutdown</code></pre>
+
+            <h2>6. Commandes de diagnostic & Preuve d'isolation</h2>
+            <ul>
+                <li><code>show vlan brief</code> : Vérifie l'existence des VLANs et les ports access associés (un port trunk n'y apparaît jamais)[cite: 22, 23].</li>
+                <li><code>show interfaces trunk</code> : Contrôle l'état <em>trunking</em>, le VLAN natif et les VLANs autorisés/actifs[cite: 15, 23].</li>
+                <li><code>show interfaces fa0/2 switchport</code> : Affiche le mode administratif, le mode opérationnel, le VLAN access et le VLAN voix[cite: 13, 19].</li>
+                <li><code>show mac address-table</code> : Montre que le commutateur maintient une table CAM distincte par VLAN[cite: 23].</li>
+            </ul>
+            <p><strong>Conclusion réseau :</strong> Deux postes ayant la même plage IP (ex. <code>192.168.10.13</code> et <code>192.168.10.14</code>) sur le même switch mais dans deux VLANs différents (10 et 20) ne peuvent pas communiquer : le switch isole le trafic au niveau 2 (liaison) avant même d'analyser les adresses IP[cite: 24].</p>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>

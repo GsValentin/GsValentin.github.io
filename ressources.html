@@ -139,7 +139,104 @@
                 </div>
                 <button class="copy-btn" onclick="copyCmd(this, 'ip a')">Copier</button>
             </div>
+<!-- CATÉGORIE 4 : ADMINISTRATION SWITCH & VLAN (CISCO IOS) -->
+            <h2 class="category-title">Administration Switch & VLAN (Cisco IOS)</h2>
 
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>show vlan brief</code>
+                    <p class="cmd-desc">Affiche tous les VLANs configurés, leur statut et les ports en mode access associés.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'show vlan brief')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>show interfaces trunk</code>
+                    <p class="cmd-desc">Vérifie les liens trunk actifs, l'encapsulation 802.1Q, le VLAN natif et les VLANs autorisés.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'show interfaces trunk')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>show interfaces fa0/1 switchport</code>
+                    <p class="cmd-desc">Affiche le détail complet d'un port (mode admin/opérationnel, VLAN access, VLAN natif et VLAN voix).</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'show interfaces fa0/1 switchport')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>show mac address-table</code>
+                    <p class="cmd-desc">Consulte la table des adresses MAC apprises par le commutateur, classées par numéro de VLAN.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'show mac address-table')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>switchport mode access</code>
+                    <p class="cmd-desc">Force un port en mode accès (un seul VLAN de données, désactive la négociation trunk).</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'switchport mode access')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>switchport access vlan 10</code>
+                    <p class="cmd-desc">Affecte le port actif au VLAN spécifié (ici le VLAN 10).</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'switchport access vlan 10')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>switchport voice vlan 150</code>
+                    <p class="cmd-desc">Ajoute un VLAN voix dédié sur un port access accueillant un téléphone IP et un PC.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'switchport voice vlan 150')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>switchport mode trunk</code>
+                    <p class="cmd-desc">Configure le port en lien trunk (transport multi-VLANs étiquetés 802.1Q entre équipements).</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'switchport mode trunk')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>switchport trunk native vlan 999</code>
+                    <p class="cmd-desc">Définit le VLAN natif (trafic non étiqueté) sur un VLAN vide dédié pour sécuriser le trunk.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'switchport trunk native vlan 999')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>switchport trunk allowed vlan 10,20,99</code>
+                    <p class="cmd-desc">Restreint le passage sur le trunk uniquement aux VLANs listés.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'switchport trunk allowed vlan 10,20,99')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>interface range fastEthernet 0/3-24</code>
+                    <p class="cmd-desc">Sélectionne une plage de ports pour les configurer ou les éteindre (shutdown) simultanément.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'interface range fastEthernet 0/3-24')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>copy running-config startup-config</code>
+                    <p class="cmd-desc">Sauvegarde la configuration active (RAM) dans la mémoire non volatile (NVRAM) du switch.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'copy running-config startup-config')">Copier</button>
+            </div>
 
 
         </main>
