@@ -237,7 +237,45 @@
                 </div>
                 <button class="copy-btn" onclick="copyCmd(this, 'copy running-config startup-config')">Copier</button>
             </div>
+<div class="cmd-item">
+                <div class="cmd-info">
+                    <code>encapsulation dot1Q 10</code>
+                    <p class="cmd-desc">Associe une sous-interface de routeur (ex: Gi0/0.10) aux trames étiquetées du VLAN 10.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'encapsulation dot1Q 10')">Copier</button>
+            </div>
 
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>ip default-gateway 192.168.99.254</code>
+                    <p class="cmd-desc">Définit la passerelle par défaut d'un commutateur de niveau 2 pour l'administrer depuis un autre VLAN.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'ip default-gateway 192.168.99.254')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>ip routing</code>
+                    <p class="cmd-desc">Active la fonction de routage IP sur un commutateur de niveau 3 (ex: Catalyst 3560) pour router entre ses SVI.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'ip routing')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>show ip route</code>
+                    <p class="cmd-desc">Affiche la table de routage d'un routeur ou switch L3 (les réseaux connectés apparaissent avec le code C).</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'show ip route')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>show interfaces gigabitEthernet 0/0 | include packets</code>
+                    <p class="cmd-desc">Filtre les statistiques d'une interface Cisco pour afficher uniquement les compteurs de paquets entrants et sortants.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'show interfaces gigabitEthernet 0/0 | include packets')">Copier</button>
+            </div>
 
         </main>
 
