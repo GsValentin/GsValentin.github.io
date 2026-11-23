@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titre du Cours | Valentin Georges</title>
+    <!-- On appelle ton fichier CSS principal situé un dossier au-dessus -->
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Petits ajouts spécifiques pour rendre les cours, images et PDF impeccables */
+        .nav-top {
+            margin-bottom: 2rem;
+        }
+        .cours-contenu {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 2rem;
+        }
+        .cours-contenu h2 {
+            color: var(--accent-caramel);
+            margin: 1.8rem 0 0.8rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .cours-contenu h2:first-child {
+            margin-top: 0;
+        }
+        .cours-contenu ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+        }
+        .cours-contenu img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            margin: 1.2rem 0;
+            display: block;
+        }
+        .pdf-viewer {
+            width: 100%;
+            height: 650px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Bouton retour vers le portfolio -->
+        <nav class="nav-top">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>Titre du Chapitre / TP</h1>
+            <p>Matière : Administration Linux • Campus Mewo</p>
+            <span class="badge-header">BTS SIO SISR • 2026</span>
+        </header>
+
+        <main class="cours-contenu">
+            <!-- 1. PARTIE NOTES / NOTION -->
+            <h2>1. Notes de cours & Commandes</h2>
+            <p>Colle ici le texte de ton cours Notion ou tes synthèses.</p>
+            <ul>
+                <li>Point clé numéro 1</li>
+                <li>Point clé numéro 2</li>
+            </ul>
+            <pre><code>sudo apt update && sudo apt upgrade -y</code></pre>
+
+            <!-- 2. PARTIE CAPTURES D'ÉCRAN -->
+            <h2>2. Captures d'écran & Schémas</h2>
+            <p>Explication rapide de la capture ci-dessous :</p>
+            <!-- Remplace nom-image.png par le vrai nom de ton fichier dans le dossier fichiers/ -->
+            <img src="../fichiers/nom-image.png" alt="Capture d'écran configuration">
+
+            <!-- 3. PARTIE PDF DU PROF -->
+            <h2>3. Support PDF du cours</h2>
+            <p><a href="../fichiers/support.pdf" target="_blank">Ouvrir le PDF en plein écran ↗</a></p>
+            <!-- Remplace support.pdf par le nom de ton PDF -->
+            <iframe src="../fichiers/support.pdf" class="pdf-viewer"></iframe>
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>
