@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration IP Statique sous Debian (CLI) | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>Configuration d'une Adresse IP Statique sous Debian</h1>
+            <p>Paramétrage réseau en ligne de commande (sans interface graphique) via /etc/network/interfaces</p>
+            <span class="badge-header">BTS SIO SISR • Bloc 2 • Administration Linux</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <h2>1. Édition du fichier de configuration réseau</h2>
+            <p>Sur une installation Debian serveur (sans environnement graphique), la configuration des cartes réseau s'effectue directement dans le fichier <code>/etc/network/interfaces</code> avec les droits <code>root</code>[cite: 76] :</p>
+            <pre><code>nano /etc/network/interfaces</code></pre>
+
+            <h2>2. Paramétrage de l'interface en IP statique</h2>
+            <p>Remplacer ou commenter la configuration DHCP existante sur l'interface concernée (ici <code>ens33</code>) pour lui attribuer une adresse IP fixe[cite: 76] :</p>
+            <pre><code># Activation automatique au démarrage
+auto ens33
+
+# Configuration IPv4 statique
+iface ens33 inet static
+    address 10.1.1.1/24</code></pre>
+
+            <div class="encadre">
+                <strong>Remarques importantes :</strong>
+                <ul>
+                    <li>Si la notation CIDR (<code>/24</code>) n'est pas indiquée à la suite de l'adresse IP, il faut ajouter la directive <code>netmask 255.255.255.0</code> sur la ligne suivante[cite: 76].</li>
+                    <li>Penser à supprimer ou commenter (avec <code>#</code>) les anciennes lignes <code>allow-hotplug ens33</code> et <code>iface ens33 inet dhcp</code>, sinon l'interface conserve simultanément son bail DHCP et son IP statique[cite: 76].</li>
+                </ul>
+            </div>
+
+            <h2>3. Redémarrage du service réseau & Vérification</h2>
+            <p>Pour appliquer les modifications sans redémarrer le serveur complet, relancer le démon réseau puis contrôler l'adressage actif[cite: 76] :</p>
+            <pre><code># Redémarrer le service réseau
+/etc/init.d/networking restart
+
+# Vérifier l'attribution de l'adresse IP sur ens33
+ip a</code></pre>
+            <p>La sortie de <code>ip a</code> doit afficher la ligne <code>inet 10.1.1.1/24 brd 10.1.1.255 scope global ens33</code>[cite: 76].</p>
+
+            <h2>4. Support original (PDF)</h2>
+            <p>Consulte directement ta fiche originale ci-dessous ou <a href="../docs/config-ip-statique-debian.pdf" target="_blank">ouvre le PDF dans un nouvel onglet</a> :</p>
+            <iframe src="../docs/config-ip-statique-debian.pdf" class="pdf-cadre" title="Configuration adresse IP statique Debian"></iframe>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>
