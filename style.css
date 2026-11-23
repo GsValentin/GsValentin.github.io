@@ -2,513 +2,576 @@
    DESIGN SYSTEM "ESPRESSO & CARAMEL" (INSPIRATION FINARY)
    ========================================================================== */
 :root {
-    /* Fonds (Brun profond & Espresso) */
-    --bg-main: #120F0D;          /* Fond principal très sombre et chaud */
-    --bg-surface: #1A1613;       /* Fond des cartes et panneaux */
-    --bg-surface-hover: #221D19; /* Survol des cartes */
-    --bg-code: #0D0B09;          /* Fond des blocs de code */
+  /* Fonds (Brun profond & Espresso) */
+  --bg-main: #120f0d; /* Fond principal très sombre et chaud */
+  --bg-surface: #1a1613; /* Fond des cartes et panneaux */
+  --bg-surface-hover: #221d19; /* Survol des cartes */
+  --bg-code: #0d0b09; /* Fond des blocs de code */
 
-    /* Textes (Crème, Lin & Taupe) */
-    --text-primary: #F5EFE6;     /* Blanc crème doux (lisible sans agresser) */
-    --text-secondary: #B8ADA1;   /* Beige grisé / taupe pour les descriptions */
-    --text-muted: #7D7267;       /* Brun clair discret */
+  /* Textes (Crème, Lin & Taupe) */
+  --text-primary: #f5efe6; /* Blanc crème doux (lisible sans agresser) */
+  --text-secondary: #b8ada1; /* Beige grisé / taupe pour les descriptions */
+  --text-muted: #7d7267; /* Brun clair discret */
 
-    /* Accents (Caramel, Or doux & Sable) */
-    --accent-caramel: #D4A373;   /* Caramel signature */
-    --accent-hover: #E2B68A;     /* Caramel éclairci au survol */
-    --accent-subtle: rgba(212, 163, 115, 0.12); /* Teinte de fond légère */
+  /* Accents (Caramel, Or doux & Sable) */
+  --accent-caramel: #d4a373; /* Caramel signature */
+  --accent-hover: #e2b68a; /* Caramel éclairci au survol */
+  --accent-subtle: rgba(212, 163, 115, 0.12); /* Teinte de fond légère */
 
-    /* Bordures & Ombres */
-    --border-subtle: #2C2520;
-    --border-accent: rgba(212, 163, 115, 0.45);
-    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  /* Bordures & Ombres */
+  --border-subtle: #2c2520;
+  --border-accent: rgba(212, 163, 115, 0.45);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 /* --- Réinitialisation & Base --- */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    line-height: 1.65;
-    padding: 3rem 1.25rem;
-    -webkit-font-smoothing: antialiased;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.65;
+  padding: 3rem 1.25rem;
+  -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    max-width: 980px;
-    margin: 0 auto;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 /* --- Typographie globale --- */
-h1, h2, h3, h4 {
-    color: var(--text-primary);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-primary);
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 a {
-    color: var(--accent-caramel);
-    text-decoration: none;
-    transition: color 0.2s ease;
+  color: var(--accent-caramel);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-    color: var(--accent-hover);
+  color: var(--accent-hover);
 }
 
 /* --- Barre de navigation supérieure --- */
 .nav-barre {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
 }
 
 .nav-barre.nav-droite {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
 .nav-barre .btn {
-    flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 /* --- En-tête (Header) --- */
 header {
-    text-align: center;
-    margin-bottom: 3.5rem;
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--border-subtle);
+  text-align: center;
+  margin-bottom: 3.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 header h1 {
-    font-size: 2.4rem;
-    margin-bottom: 0.6rem;
-    background: linear-gradient(135deg, #F5EFE6 30%, #D4A373 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  font-size: 2.4rem;
+  margin-bottom: 0.6rem;
+  background: linear-gradient(135deg, #f5efe6 30%, #d4a373 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 header p {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-    max-width: 600px;
-    margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .badge-header {
-    display: inline-block;
-    background-color: var(--accent-subtle);
-    color: var(--accent-caramel);
-    border: 1px solid var(--border-accent);
-    padding: 0.35rem 1rem;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-top: 1.25rem;
+  display: inline-block;
+  background-color: var(--accent-subtle);
+  color: var(--accent-caramel);
+  border: 1px solid var(--border-accent);
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 1.25rem;
 }
 
 /* --- Grille & Cartes Projets (Portfolio) --- */
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.5rem;
 }
 
 .card {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: var(--shadow-card);
-    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .card:hover {
-    transform: translateY(-3px);
-    background-color: var(--bg-surface-hover);
-    border-color: var(--border-accent);
+  transform: translateY(-3px);
+  background-color: var(--bg-surface-hover);
+  border-color: var(--border-accent);
 }
 
-.card h2, .card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.6rem;
+.card h2,
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
 }
 
 .card p {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin-bottom: 1.5rem;
 }
 
 /* --- Étiquettes (Tags) --- */
 .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-bottom: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.6rem;
 }
 
 .tag {
-    background-color: var(--bg-main);
-    color: var(--accent-caramel);
-    font-size: 0.75rem;
-    font-weight: 500;
-    padding: 0.25rem 0.65rem;
-    border-radius: 6px;
-    border: 1px solid var(--border-subtle);
+  background-color: var(--bg-main);
+  color: var(--accent-caramel);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
 }
 
 /* --- Boutons d'action --- */
 .links {
-    display: flex;
-    gap: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
 }
 
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.6rem 1.1rem;
-    border-radius: 8px;
-    flex: 1;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  flex: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
-    background-color: var(--accent-caramel);
-    color: #120F0D;
-    border: 1px solid var(--accent-caramel);
+  background-color: var(--accent-caramel);
+  color: #120f0d;
+  border: 1px solid var(--accent-caramel);
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-hover);
-    border-color: var(--accent-hover);
-    color: #120F0D;
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #120f0d;
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: var(--text-primary);
-    border: 1px solid var(--border-subtle);
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
 }
 
 .btn-secondary:hover {
-    background-color: var(--accent-subtle);
-    border-color: var(--accent-caramel);
-    color: var(--accent-caramel);
+  background-color: var(--accent-subtle);
+  border-color: var(--accent-caramel);
+  color: var(--accent-caramel);
 }
 
 /* --- Tableaux & Blocs de code --- */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    background-color: var(--bg-surface);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--border-subtle);
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background-color: var(--bg-surface);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
 }
 
-th, td {
-    padding: 0.85rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--border-subtle);
-    font-size: 0.9rem;
+th,
+td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
 }
 
 th {
-    background-color: var(--bg-surface-hover);
-    color: var(--accent-caramel);
-    font-weight: 600;
+  background-color: var(--bg-surface-hover);
+  color: var(--accent-caramel);
+  font-weight: 600;
 }
 
-pre, code {
-    font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
-    background-color: var(--bg-code);
-    border: 1px solid var(--border-subtle);
-    border-radius: 6px;
-    font-size: 0.88rem;
+pre,
+code {
+  font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+  background-color: var(--bg-code);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  font-size: 0.88rem;
 }
 
 code {
-    padding: 0.15rem 0.4rem;
-    color: var(--accent-caramel);
+  padding: 0.15rem 0.4rem;
+  color: var(--accent-caramel);
 }
 
 pre {
-    padding: 1.1rem;
-    overflow-x: auto;
-    margin: 1.25rem 0;
-    color: var(--text-primary);
+  padding: 1.1rem;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  color: var(--text-primary);
 }
 
 pre code {
-    border: none;
-    padding: 0;
-    background: none;
-    color: inherit;
+  border: none;
+  padding: 0;
+  background: none;
+  color: inherit;
 }
 
 /* ==========================================================================
    COMPOSANTS RÉUTILISABLES : FICHES DE COURS & TP (.fiche-cours)
    ========================================================================== */
 .fiche-cours {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 2.25rem;
-    box-shadow: var(--shadow-card);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 2.25rem;
+  box-shadow: var(--shadow-card);
 }
 
 .fiche-cours h2 {
-    color: var(--accent-caramel);
-    font-size: 1.35rem;
-    margin: 2.2rem 0 1rem 0;
-    padding-bottom: 0.45rem;
-    border-bottom: 1px solid var(--border-subtle);
+  color: var(--accent-caramel);
+  font-size: 1.35rem;
+  margin: 2.2rem 0 1rem 0;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .fiche-cours h2:first-child {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .fiche-cours h3 {
-    color: var(--text-primary);
-    font-size: 1.1rem;
-    margin: 1.5rem 0 0.6rem 0;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.6rem 0;
 }
 
 .fiche-cours p {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
 }
 
-.fiche-cours ul, .fiche-cours ol {
-    margin-left: 1.5rem;
-    margin-bottom: 1.25rem;
-    color: var(--text-secondary);
+.fiche-cours ul,
+.fiche-cours ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  color: var(--text-secondary);
 }
 
 .fiche-cours li {
-    margin-bottom: 0.45rem;
+  margin-bottom: 0.45rem;
 }
 
 /* Encadré d'alerte / astuce / règle importante */
 .encadre {
-    background-color: var(--accent-subtle);
-    border-left: 3px solid var(--accent-caramel);
-    padding: 1rem 1.25rem;
-    border-radius: 0 8px 8px 0;
-    margin: 1.25rem 0;
-    color: var(--text-primary);
-    font-size: 0.92rem;
+  background-color: var(--accent-subtle);
+  border-left: 3px solid var(--accent-caramel);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.25rem 0;
+  color: var(--text-primary);
+  font-size: 0.92rem;
 }
 
 .encadre strong {
-    color: var(--accent-caramel);
+  color: var(--accent-caramel);
 }
 
 /* Captures d'écran & Schémas dans un cours */
 .image-cours {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    border: 1px solid var(--border-subtle);
-    margin: 1.25rem 0;
-    display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  margin: 1.25rem 0;
+  display: block;
 }
 
 /* Lecteur PDF intégré */
 .pdf-cadre {
-    width: 100%;
-    height: 650px;
-    border: 1px solid var(--border-subtle);
-    border-radius: 10px;
-    margin-top: 1rem;
+  width: 100%;
+  height: 650px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  margin-top: 1rem;
 }
 
 /* ==========================================================================
    COMPOSANTS RÉUTILISABLES : PAGE RESSOURCES & COMMANDES
    ========================================================================== */
 .barre-recherche {
-    width: 100%;
-    padding: 0.9rem 1.2rem;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 10px;
-    color: var(--text-primary);
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    outline: none;
-    transition: border-color 0.2s;
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
 .barre-recherche:focus {
-    border-color: var(--accent-caramel);
+  border-color: var(--accent-caramel);
 }
 
 .categorie-titre {
-    color: var(--accent-caramel);
-    font-size: 1.3rem;
-    margin: 2.2rem 0 1rem 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-subtle);
+  color: var(--accent-caramel);
+  font-size: 1.3rem;
+  margin: 2.2rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .commande-ligne {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 10px;
-    padding: 1rem 1.25rem;
-    margin-bottom: 0.85rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    transition: border-color 0.2s;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: border-color 0.2s;
 }
 
 .commande-ligne:hover {
-    border-color: var(--border-accent);
+  border-color: var(--border-accent);
 }
 
 .commande-info {
-    flex: 1;
-    min-width: 240px;
+  flex: 1;
+  min-width: 240px;
 }
 
 .commande-desc {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-top: 0.35rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
 }
 
 .btn-copier {
-    background-color: var(--accent-subtle);
-    color: var(--accent-caramel);
-    border: 1px solid var(--border-accent);
-    padding: 0.45rem 0.9rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
+  background-color: var(--accent-subtle);
+  color: var(--accent-caramel);
+  border: 1px solid var(--border-accent);
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .btn-copier:hover {
-    background-color: var(--accent-caramel);
-    color: #120F0D;
+  background-color: var(--accent-caramel);
+  color: #120f0d;
 }
 
 /* --- Pied de page (Footer) --- */
 footer {
-    text-align: center;
-    margin-top: 4.5rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--border-subtle);
-    color: var(--text-muted);
-    font-size: 0.85rem;
+  text-align: center;
+  margin-top: 4.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 /* ==========================================================================
    CARTES DE COURS DÉPLIABLES (ACCORDÉON NATIF)
    ========================================================================== */
 details.card {
-    padding: 0;
-    cursor: pointer;
-    overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
 }
 
 details.card summary {
-    list-style: none;
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    position: relative;
+  list-style: none;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
 }
 
 details.card summary::-webkit-details-marker {
-    display: none;
+  display: none;
 }
 
 /* Indicateur visuel (+ / −) en bas à droite, aligné avec les tags */
 details.card summary::after {
-    content: "+";
-    position: absolute;
-    bottom: 1.65rem;
-    right: 1.75rem;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background-color: var(--accent-subtle);
-    color: var(--accent-caramel);
-    border: 1px solid var(--border-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: transform 0.25s ease, background-color 0.2s ease;
+  content: "+";
+  position: absolute;
+  bottom: 1.65rem;
+  right: 1.75rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--accent-subtle);
+  color: var(--accent-caramel);
+  border: 1px solid var(--border-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition:
+    transform 0.25s ease,
+    background-color 0.2s ease;
 }
 
 details.card[open] summary::after {
-    content: "−";
-    background-color: var(--accent-caramel);
-    color: #120F0D;
+  content: "−";
+  background-color: var(--accent-caramel);
+  color: #120f0d;
 }
 
 details.card summary .tags {
-    margin-bottom: 0;
-    padding-right: 2.5rem; /* Évite qu'un tag ne passe sous le bouton + */
+  margin-bottom: 0;
+  padding-right: 2.5rem; /* Évite qu'un tag ne passe sous le bouton + */
 }
 
 /* Contenu qui apparaît quand on clique sur la carte */
 .card-liste-cours {
-    padding: 1.25rem 1.75rem 1.75rem 1.75rem;
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    cursor: default;
-    background-color: rgba(0, 0, 0, 0.15);
+  padding: 1.25rem 1.75rem 1.75rem 1.75rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  cursor: default;
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .card-liste-cours .btn {
-    justify-content: flex-start;
-    text-align: left;
+  justify-content: flex-start;
+  text-align: left;
 }
 /* Grille côte à côte pour afficher 2 PDF sur la même page */
 .pdf-grille {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.25rem;
 }
 
 .pdf-grille .pdf-cadre {
-    margin-top: 0.5rem;
-    height: 620px;
+  margin-top: 0.5rem;
+  height: 620px;
 }
 
 .pdf-colonne h3 {
-    margin-top: 0;
-    font-size: 1.05rem;
-    color: var(--text-primary);
+  margin-top: 0;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+/* =========================================================
+   GALERIE & CAPTURES D'ÉCRAN DANS LES FICHES DE COURS
+   ========================================================= */
+.capture-figure {
+  margin: 1.5rem 0;
+  background: var(--bg-secondary, #fdfaf6);
+  border: 1px solid var(--border-color, #e6d5c3);
+  border-radius: 12px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.06);
+  text-align: center;
+}
+
+.capture-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+  cursor: zoom-in;
+  transition: transform 0.2s ease;
+}
+
+.capture-figure img:hover {
+  transform: scale(1.01);
+}
+
+.capture-legende {
+  margin-top: 0.65rem;
+  font-size: 0.9rem;
+  color: var(--text-muted, #6f4e37);
+  font-style: italic;
+}
+
+/* Grille pour afficher 2 captures d'écran côte à côte */
+.captures-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.captures-grille .capture-figure {
+  margin: 0;
 }
