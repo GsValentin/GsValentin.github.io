@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Installation d'une VM sur VMware Workstation | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>Création & Configuration d'une VM sous VMware Workstation</h1>
+            <p>Déploiement pas à pas d'une machine virtuelle Debian 13 (64 bits) en mode avancé</p>
+            <span class="badge-header">BTS SIO SISR • Bloc 1 • Virtualisation</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <h2>1. Principe de la virtualisation (VMware Workstation)</h2>
+            <p><strong>VMware Workstation Pro</strong> est un hyperviseur de type 2 permettant d'exécuter plusieurs systèmes d'exploitation isolés (Windows, Linux) simultanément sur une même machine physique en partageant ses ressources matérielles (CPU, RAM, stockage)[cite: 52].</p>
+
+            <h2>2. Paramétrage de la machine virtuelle (Mode Personnalisé)</h2>
+            <p>Depuis l'accueil (<code>Fichier &gt; Nouvelle machine virtuelle...</code>), il faut toujours choisir la configuration <strong>Personnalisée (avancée)</strong> afin de maîtriser chaque composant matériel virtuel[cite: 54, 55].</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Étape de l'assistant</th>
+                        <th>Choix recommandé</th>
+                        <th>Justification technique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Compatibilité matérielle</strong></td>
+                        <td>Dernière version (ex. <code>Workstation 25H2 or later</code>)[cite: 56]</td>
+                        <td>Garantit l'accès aux fonctionnalités matérielles les plus récentes[cite: 56].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Système d'exploitation</strong></td>
+                        <td><em>J'installerai le système d'exploitation ultérieurement</em>[cite: 57]</td>
+                        <td>Évite l'installation automatisée (Easy Install) imposée par VMware et permet un partitionnement manuel[cite: 57].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OS Invité & Version</strong></td>
+                        <td><code>Linux</code> → <code>Debian 13.x 64 bits</code>[cite: 58]</td>
+                        <td>Pré-configure les pilotes et l'architecture matérielle adaptés au noyau[cite: 58].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Processeur (CPU)</strong></td>
+                        <td>2 processeurs / 1 cœur (2 cœurs au total)[cite: 60]</td>
+                        <td>À ajuster selon les cœurs physiques disponibles sur l'hôte[cite: 60].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mémoire vive (RAM)</strong></td>
+                        <td><code>4096 Mo</code> (4 Go) — recommandé : 2 Go[cite: 61]</td>
+                        <td>Doit être un multiple de 4 Mo et respecter la limite maximale de l'hôte[cite: 61].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contrôleur E/S & Disque</strong></td>
+                        <td>Contrôleur <code>LSI Logic</code> + Disque <code>SCSI</code>[cite: 63, 64]</td>
+                        <td>Interface virtuelle assurant le lien performant entre l'OS invité et le stockage[cite: 63, 64].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stockage virtuel (.vmdk)</strong></td>
+                        <td>Créer un disque de <code>20 Go</code> en <strong>fichier unique</strong>[cite: 65, 66, 67]</td>
+                        <td>Le format <code>.vmdk</code> en fichier unique offre de meilleures performances si la VM reste sur le même PC[cite: 66, 67].</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>3. Les 3 modes réseau VMware à connaître</h2>
+            <ul>
+                <li><strong>Accès par pont (Bridged) :</strong> La VM est connectée directement au réseau physique local et obtient sa propre adresse IP (comme un PC réel du réseau)[cite: 62].</li>
+                <li><strong>NAT (Traduction d'adresses) :</strong> La VM accède à Internet en partageant l'adresse IP de la machine physique hôte (idéal par défaut)[cite: 62].</li>
+                <li><strong>Réseau hôte uniquement (Host-Only) :</strong> Réseau virtuel fermé isolé d'Internet ; la VM ne communique qu'avec le PC hôte et les autres VM sur ce même segment[cite: 62].</li>
+            </ul>
+
+            <h2>4. Montage de l'image ISO & Démarrage</h2>
+            <p>Une fois la VM créée dans la bibliothèque, il faut insérer le support d'installation avant la mise sous tension[cite: 69, 70] :</p>
+            <ol>
+                <li>Cliquer sur <strong>Modifier les paramètres de la machine virtuelle</strong> puis sélectionner <code>CD/DVD (SATA)</code>[cite: 69].</li>
+                <li>Cocher <em>Se connecter lors de la mise sous tension</em>.</li>
+                <li>Sélectionner <strong>Utiliser le fichier image ISO</strong> et pointer vers le fichier <code>.iso</code> (ex. Debian 13)[cite: 70].</li>
+                <li>Valider par <strong>OK</strong> et lancer la machine virtuelle[cite: 70, 71].</li>
+            </ol>
+
+            <div class="encadre">
+                <strong>À retenir :</strong> Ne jamais indiquer le fichier <code>.iso</code> dès l'étape 3 de l'assistant de création si l'on veut garder la main sur la langue, le clavier et le partitionnement du système invité[cite: 57].
+            </div>
+
+            <h2>5. Support de cours complet (Diaporama PDF)</h2>
+            <p>Consulte directement la présentation complète ci-dessous ou <a href="../docs/installation-vm-vmware.pdf" target="_blank">ouvre le PDF dans un nouvel onglet</a> :</p>
+            <iframe src="../docs/installation-vm-vmware.pdf" class="pdf-cadre" title="Présentation Installation VM VMware Workstation"></iframe>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>
