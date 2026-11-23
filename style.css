@@ -494,3 +494,21 @@ details.card summary .tags {
     justify-content: flex-start;
     text-align: left;
 }
+/* Grille côte à côte pour afficher 2 PDF sur la même page */
+.pdf-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+}
+
+.pdf-grille .pdf-cadre {
+    margin-top: 0.5rem;
+    height: 620px;
+}
+
+.pdf-colonne h3 {
+    margin-top: 0;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}

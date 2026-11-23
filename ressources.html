@@ -85,6 +85,15 @@
                 </div>
                 <button class="btn-copier" onclick="copyCmd(this, 'net user Administrateur *')">Copier</button>
             </div>
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>tracert 192.168.20.14</code>
+                    <p class="commande-desc">Affiche le chemin routeur par routeur (sauts de couche 3) emprunté par un paquet sous Windows (les switches L2 sont transparents)[cite: 111, 114].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'tracert 192.168.20.14')">Copier</button>
+            </div>
+
+
             <!-- CATÉGORIE 3 : LINUX (DEBIAN / UBUNTU) -->
             <h2 class="categorie-titre">Administration Linux (Debian / Ubuntu)</h2>
 
@@ -362,6 +371,45 @@
                     <p class="commande-desc">Envoie les commits locaux validés vers le dépôt distant (GitHub).</p>
                 </div>
                 <button class="btn-copier" onclick="copyCmd(this, 'git push')">Copier</button>
+            </div>
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>show ip interface brief</code>
+                    <p class="commande-desc">Affiche rapidement l'état (Status / Protocol) et l'adresse IP de toutes les interfaces physiques, sous-interfaces et SVI d'un équipement Cisco[cite: 102, 108, 114].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'show ip interface brief')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>switchport trunk encapsulation dot1q</code>
+                    <p class="commande-desc">Définit le protocole d'étiquetage 802.1Q sur un commutateur de niveau 3 (ex. Catalyst 3560) avant d'activer le mode trunk[cite: 88, 105].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'switchport trunk encapsulation dot1q')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>interface GigabitEthernet0/0.10</code>
+                    <p class="commande-desc">Crée une sous-interface logique sur un routeur Cisco pour le routage inter-VLAN (Router-on-a-stick)[cite: 89, 107].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'interface GigabitEthernet0/0.10')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>interface vlan 10</code>
+                    <p class="commande-desc">Crée une interface virtuelle commutée (SVI) pour le management L2 ou le routage inter-VLAN sur un switch L3[cite: 95, 118].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'interface vlan 10')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>clear counters</code>
+                    <p class="commande-desc">Remet à zéro les compteurs de paquets et d'erreurs des interfaces Cisco avant un test de diagnostic[cite: 116].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'clear counters')">Copier</button>
             </div>
 
         </main>

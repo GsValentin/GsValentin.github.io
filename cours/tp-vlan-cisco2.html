@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TP Routage Inter-VLAN Cisco | Valentin Georges</title>
+    <title>Cours & TP : Le Routage Inter-VLAN (Cisco) | Valentin Georges</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -11,165 +11,114 @@
     <div class="container">
         <nav class="nav-barre">
             <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
-            <a href="../ressources.html" class="btn btn-primary">Ressources & Commandes</a>
         </nav>
 
         <header>
-            <h1>Routage Inter-VLAN Cisco</h1>
-            <p>Router-on-a-stick, sous-interfaces 802.1Q, passerelles par VLAN et commutateur de niveau 3 (Catalyst 3560)</p>
-            <span class="badge-header">BTS SIO SISR • Cisco Packet Tracer</span>
+            <h1>Le Routage Inter-VLAN : Franchir la Frontière</h1>
+            <p>Router-on-a-stick (sous-interfaces 802.1Q), commutateur de niveau 3 (SVI), trajet des paquets et diagnostic</p>
+            <span class="badge-header">BTS SIO SISR • Bloc 2 • Commutation & Routage Cisco</span>
         </header>
 
         <main class="fiche-cours">
 
-            <h2>1. Principe du Router-on-a-Stick</h2>
-            <p>La segmentation par VLAN isole les réseaux au niveau 2 (liaison)[cite: 25]. Pour faire communiquer deux VLANs distincts, il faut un équipement de niveau 3 (routeur ou switch L3) présent dans chaque VLAN[cite: 25, 38, 46].</p>
-            <p>L'architecture <strong>Router-on-a-stick</strong> utilise un seul câble physique monté en <strong>trunk 802.1Q</strong> entre le commutateur (<code>SW1 Gi0/2</code>) et le routeur (<code>R1 Gi0/0</code>)[cite: 25, 30]. Le routeur découpe ensuite son interface physique en autant de sous-interfaces logiques qu'il y a de VLANs à router[cite: 30].</p>
-            <div class="encadre">
-                <strong>Règle de câblage :</strong> Un commutateur et un routeur sont des équipements de nature différente — on les relie avec un <strong>câble droit</strong> (contrairement à deux commutateurs qui exigent un câble croisé)[cite: 26].
-            </div>
+            <h2>1. Pourquoi deux VLANs ne communiquent pas ?</h2>
+            <p>Un <strong>VLAN</strong> correspond à un domaine de diffusion et donc à un <strong>réseau IP distinct</strong>[cite: 85]. Un commutateur de niveau 2 (ex. Catalyst 2960) ne lit que les adresses MAC et ne sort jamais du VLAN d'entrée[cite: 84, 85].</p>
+            <ul>
+                <li><strong>Sans passerelle sur le poste :</strong> Si PC1 (<code>192.168.10.11/24</code>) tente de joindre PC2 (<code>192.168.20.12/24</code>), il détecte que la destination est hors de son réseau, ne trouve aucune passerelle et abandonne immédiatement le paquet avant même qu'il atteigne le câble (message <em>Destination host unreachable</em> et table ARP vide)[cite: 84, 104].</li>
+                <li><strong>Règle fondamentale :</strong> Changer de VLAN revient à changer de réseau IP ; il faut obligatoirement un équipement de <strong>couche 3</strong> (routeur ou switch L3) pour assurer le routage[cite: 85, 86].</li>
+            </ul>
 
-            <h2>2. Plan des sous-interfaces & Passerelles</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Sous-interface R1</th>
-                        <th>VLAN servi</th>
-                        <th>Passerelle (.254)</th>
-                        <th>Équipements concernés</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>Gi0/0</code> (physique)</td>
-                        <td>—</td>
-                        <td><strong>Aucune adresse IP</strong></td>
-                        <td>Port support uniquement (protège le VLAN natif 999)[cite: 26, 34].</td>
-                    </tr>
-                    <tr>
-                        <td><code>Gi0/0.10</code></td>
-                        <td>10 (DIRECTION)</td>
-                        <td><code>192.168.10.254/24</code></td>
-                        <td>PC1 (<code>.11</code>), PC3 (<code>.13</code>)[cite: 27]</td>
-                    </tr>
-                    <tr>
-                        <td><code>Gi0/0.20</code></td>
-                        <td>20 (COMPTA)</td>
-                        <td><code>192.168.20.254/24</code></td>
-                        <td>PC2 (<code>.12</code>), PC4 (<code>.14</code>)[cite: 27]</td>
-                    </tr>
-                    <tr>
-                        <td><code>Gi0/0.99</code></td>
-                        <td>99 (MGMT)</td>
-                        <td><code>192.168.99.254/24</code></td>
-                        <td>PC-ADMIN (<code>.10</code>), SW1 (<code>.1</code>), SW2 (<code>.2</code>)[cite: 27]</td>
-                    </tr>
-                    <tr>
-                        <td><code>Gi0/0.150</code></td>
-                        <td>150 (VOIX)</td>
-                        <td><code>192.168.150.254/24</code></td>
-                        <td>Téléphone IP 7960[cite: 27, 28]</td>
-                    </tr>
-                    <tr>
-                        <td><em>Aucune</em></td>
-                        <td>999 (MORT)</td>
-                        <td><em>Non routé</em></td>
-                        <td>Le VLAN natif reste volontairement isolé sans passerelle[cite: 27, 28].</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>2. Solution 1 : Le Router-on-a-stick</h2>
+            <p>Cette architecture relie un commutateur L2 (SW1) à un routeur (R1) via <strong>un seul câble physique configuré en trunk 802.1Q</strong>, découpé côté routeur en autant de <strong>sous-interfaces logiques</strong> qu'il y a de VLANs à router[cite: 86, 87].</p>
 
-            <h2>3. Configuration du Switch (SW1) & du Routeur (R1)</h2>
-            <h3>Côté SW1 : Réveiller Gi0/2 et passer en Trunk</h3>
-            <pre><code>SW1(config)# interface gigabitEthernet 0/2
+            <h3>A. Côté Commutateur (Port Trunk vers R1)</h3>
+            <pre><code>SW1(config)# interface GigabitEthernet0/2
 SW1(config-if)# description Vers R1 trunk inter-VLAN
 SW1(config-if)# no shutdown
 SW1(config-if)# switchport mode trunk
 SW1(config-if)# switchport trunk native vlan 999
-SW1(config-if)# switchport trunk allowed vlan 10,20,99,150,999</code></pre>
+SW1(config-if)# switchport trunk allowed vlan 10,20,99,150,999
+SW1(config-if)# end</code></pre>
+            <p><em>Note : Sur un commutateur de niveau 3 (ex. Catalyst 3560), il faut taper <code>switchport trunk encapsulation dot1q</code> <strong>avant</strong> <code>switchport mode trunk</code>[cite: 88, 105].</em></p>
 
-            <h3>Côté R1 : Allumer Gi0/0 et créer les sous-interfaces</h3>
-            <pre><code>! 1. Activer l'interface physique sans IP
-R1(config)# interface gigabitEthernet 0/0
+            <h3>B. Côté Routeur (Sous-interfaces 802.1Q)</h3>
+            <pre><code>R1(config)# interface GigabitEthernet0/0
 R1(config-if)# no shutdown
 R1(config-if)# exit
 
-! 2. Créer chaque sous-interface logique
-R1(config)# interface gigabitEthernet 0/0.10
+R1(config)# interface GigabitEthernet0/0.10
 R1(config-subif)# encapsulation dot1Q 10
 R1(config-subif)# ip address 192.168.10.254 255.255.255.0
 R1(config-subif)# exit
 
-R1(config)# interface gigabitEthernet 0/0.20
+R1(config)# interface GigabitEthernet0/0.20
 R1(config-subif)# encapsulation dot1Q 20
-R1(config-subif)# ip address 192.168.20.254 255.255.255.0
-R1(config-subif)# exit
+R1(config-subif)# ip address 192.168.20.254 255.255.255.0</code></pre>
 
-R1(config)# interface gigabitEthernet 0/0.99
-R1(config-subif)# encapsulation dot1Q 99
-R1(config-subif)# ip address 192.168.99.254 255.255.255.0
-R1(config-subif)# exit
-
-R1(config)# interface gigabitEthernet 0/0.150
-R1(config-subif)# encapsulation dot1Q 150
-R1(config-subif)# ip address 192.168.150.254 255.255.255.0
-R1(config-subif)# end</code></pre>
             <div class="encadre">
-                <strong>Point critique :</strong> Le numéro après le point (<code>Gi0/0.10</code>) n'est qu'une convention de nommage[cite: 34, 35]. C'est uniquement la commande <code>encapsulation dot1Q 10</code> qui associe réellement la sous-interface aux trames étiquetées du VLAN 10[cite: 35].
+                <strong>Les 3 règles d'or du Router-on-a-stick :</strong>
+                <ul>
+                    <li><strong>Allumer l'interface physique :</strong> Un oubli de <code>no shutdown</code> sur <code>Gi0/0</code> laisse toutes les sous-interfaces en <em>down</em>[cite: 89, 108].</li>
+                    <li><strong>Aucune IP sur <code>Gi0/0</code> :</strong> L'interface physique reste <code>unassigned</code> afin que le trafic non étiqueté du VLAN natif 999 (VLAN mort) soit rejeté[cite: 89, 107, 108].</li>
+                    <li><strong>L'encapsulation fait le lien :</strong> Le numéro après le point (<code>.10</code>) n'est qu'une convention de nommage ; c'est la commande <code>encapsulation dot1Q 10</code> qui rattache réellement la sous-interface au VLAN[cite: 89, 108].</li>
+                </ul>
             </div>
 
-            <h2>4. Passerelle des commutateurs de niveau 2</h2>
-            <p>Un commutateur de niveau 2 (Catalyst 2960) ne route pas[cite: 25, 40]. Pour qu'il puisse répondre à un ping ou une session SSH provenant d'un autre VLAN que son VLAN de management (VLAN 99), il doit connaître sa passerelle par défaut[cite: 39, 40] :</p>
+            <h3>C. Passerelle sur les postes ET sur les switches L2</h3>
+            <p>Chaque poste doit recevoir la passerelle de <strong>son propre VLAN</strong> (ex. <code>192.168.10.254</code> pour le VLAN 10)[cite: 90, 110]. De plus, un commutateur de niveau 2 ne route rien, pas même pour lui-même : pour l'administrer depuis un autre VLAN, il faut lui indiquer sa passerelle dans le VLAN de management[cite: 90, 112, 113] :</p>
             <pre><code>SW1(config)# ip default-gateway 192.168.99.254</code></pre>
-            <p><em>(À appliquer également sur SW2[cite: 40]. Cette commande est ignorée sur un commutateur de niveau 3 ayant <code>ip routing</code> activé[cite: 40]).</em></p>
 
-            <h2>5. Alternative : Commutateur de Niveau 3 (Catalyst 3560)</h2>
-            <p>En <em>Router-on-a-stick</em>, chaque paquet inter-VLAN franchit deux fois le même câble physique (effet demi-tour / <em>hairpin</em>), divisant par deux la bande passante utile du lien[cite: 43]. Un commutateur de niveau 3 élimine ce goulot d'étranglement en routant directement en interne via des interfaces virtuelles (SVI)[cite: 44, 45, 46] :</p>
-            <pre><code>! Activer la fonction routage du switch L3
-SW-L3(config)# ip routing
-
-! Créer les passerelles SVI (pas besoin d'encapsulation dot1Q)
+            <h2>3. Solution 2 : Le Commutateur de Niveau 3 (Switch L3)</h2>
+            <p>Dans un Router-on-a-stick, chaque paquet inter-VLAN traverse deux fois le même câble (montée vers R1 puis descente vers SW1 : effet <em>hairpin</em> ou épingle à cheveux), ce qui divise par deux le débit utile[cite: 94, 116]. Le <strong>Switch L3</strong> (ex. Catalyst 3560) intègre directement le routage matériel (ASIC) en interne via des <strong>SVI (Switched Virtual Interfaces)</strong>[cite: 95, 118] :</p>
+            <pre><code>SW-L3(config)# ip routing
 SW-L3(config)# interface vlan 10
 SW-L3(config-if)# ip address 192.168.10.254 255.255.255.0
 SW-L3(config-if)# no shutdown
-
-SW-L3(config)# interface vlan 20
+SW-L3(config-if)# interface vlan 20
 SW-L3(config-if)# ip address 192.168.20.254 255.255.255.0
 SW-L3(config-if)# no shutdown</code></pre>
+            <p><em>Attention : Un SVI ne passe en état <code>up/up</code> que si le VLAN existe dans la base et qu'au moins un port actif lui est affecté[cite: 95, 118].</em></p>
 
-            <h2>6. Comparatif & Diagnostic rapide</h2>
+            <h2>4. Comparatif & Diagnostic des pannes fréquentes</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Critère</th>
-                        <th>Router-on-a-stick (Routeur 1941)</th>
-                        <th>Commutateur Niveau 3 (Catalyst 3560)</th>
+                        <th>Router-on-a-stick</th>
+                        <th>Commutateur de niveau 3</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Liaison</strong></td>
-                        <td>1 câble trunk entre switch et routeur[cite: 25, 46].</td>
-                        <td>Aucune (routage interne au fond de panier)[cite: 46].</td>
+                        <td><strong>Interfaces routées</strong></td>
+                        <td>Sous-interfaces (<code>Gi0/0.10</code>) + <code>encapsulation dot1Q</code>[cite: 96, 119].</td>
+                        <td>Interfaces VLAN virtuelles (SVI : <code>interface vlan 10</code>)[cite: 96, 119].</td>
                     </tr>
                     <tr>
-                        <td><strong>Association VLAN</strong></td>
-                        <td>Sous-interface + <code>encapsulation dot1Q</code>[cite: 46].</td>
-                        <td>Interface SVI (<code>interface vlan X</code>) + <code>ip routing</code>[cite: 45, 46].</td>
+                        <td><strong>Débit & Point de panne</strong></td>
+                        <td>Débit divisé par 2 (demi-tour sur le câble unique)[cite: 96, 119].</td>
+                        <td>Routage interne au débit du fond de panier (ASIC), sans câble externe[cite: 96, 119].</td>
                     </tr>
                     <tr>
-                        <td><strong>Débit utile</strong></td>
-                        <td>Divisé par 2 sur le lien (aller-retour / hairpin)[cite: 43, 46].</td>
-                        <td>Plein débit matériel (aucun demi-tour)[cite: 46].</td>
+                        <td><strong>Sécurité (point de vigilance)</strong></td>
+                        <td colspan="2">Activer le routage ouvre la communication entre <strong>tous</strong> les VLANs (y compris le VLAN 99 Management)[cite: 97, 120]. Il faudra filtrer les flux avec des <strong>ACL</strong>[cite: 120].</td>
                     </tr>
                 </tbody>
             </table>
 
-            <ul>
-                <li><code>show ip interface brief</code> : Vérifie que <code>Gi0/0</code> est <em>unassigned (up/up)</em> et que toutes les sous-interfaces sont <em>up/up</em>[cite: 35].</li>
-                <li><code>show ip route</code> : Affiche une ligne <code>C</code> (<em>Connected</em>) pour chaque VLAN effectivement routé[cite: 36].</li>
-                <li><code>tracert 192.168.20.14</code> (sur PC) : Affiche 2 sauts (la sous-interface du routeur, puis le PC cible) — les switchs L2 restent invisibles[cite: 38].</li>
-            </ul>
+            <h2>5. Supports complets : Cours & TP Packet Tracer (PDF)</h2>
+            <p>Consulte directement le support de cours à gauche et l'énoncé du TP Packet Tracer à droite :</p>
+
+            <div class="pdf-grille">
+                <div class="pdf-colonne">
+                    <h3>Cours — Routage Inter-VLAN <a href="../docs/cours-routage-intervlan.pdf" target="_blank">(Ouvrir ↗)</a></h3>
+                    <iframe src="../docs/cours-routage-intervlan.pdf" class="pdf-cadre" title="Cours Routage Inter-VLAN"></iframe>
+                </div>
+                <div class="pdf-colonne">
+                    <h3>TP Packet Tracer — Routage Inter-VLAN <a href="../docs/tp-routage-intervlan.pdf" target="_blank">(Ouvrir ↗)</a></h3>
+                    <iframe src="../docs/tp-routage-intervlan.pdf" class="pdf-cadre" title="TP Routage Inter-VLAN Packet Tracer"></iframe>
+                </div>
+            </div>
 
         </main>
 
