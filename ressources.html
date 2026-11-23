@@ -46,7 +46,45 @@
                 </div>
                 <button class="btn-copier" onclick="copyCmd(this, 'gpupdate /force')">Copier</button>
             </div>
+<div class="commande-ligne">
+                <div class="commande-info">
+                    <code>ip route</code>
+                    <p class="commande-desc">Affiche la table de routage et l'adresse de la passerelle par défaut sous Linux[cite: 33].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'ip route')">Copier</button>
+            </div>
 
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>cat /etc/resolv.conf</code>
+                    <p class="commande-desc">Affiche les serveurs DNS actuellement configurés sur une machine Linux[cite: 33].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'cat /etc/resolv.conf')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>ip neigh</code>
+                    <p class="commande-desc">Équivalent Linux de « arp -a » : affiche la table de voisinage (correspondances IP ↔ MAC locales)[cite: 55].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'ip neigh')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>ping -c 4 8.8.8.8</code>
+                    <p class="commande-desc">Envoie exactement 4 paquets ICMP sous Linux (évite le ping infini par défaut)[cite: 55].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'ping -c 4 8.8.8.8')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>net user Administrateur *</code>
+                    <p class="commande-desc">Réinitialise le mot de passe d'un compte local Windows en invite de commandes administrateur.</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'net user Administrateur *')">Copier</button>
+            </div>
             <!-- CATÉGORIE 3 : LINUX (DEBIAN / UBUNTU) -->
             <h2 class="categorie-titre">Administration Linux (Debian / Ubuntu)</h2>
 
@@ -234,6 +272,96 @@
                     <p class="commande-desc">Sauvegarde la configuration active (RAM) dans la mémoire non volatile (NVRAM) du switch ou routeur.</p>
                 </div>
                 <button class="btn-copier" onclick="copyCmd(this, 'copy running-config startup-config')">Copier</button>
+            </div>
+            <!-- CATÉGORIE 5 : GESTION DE VERSIONS (GIT & GITHUB) -->
+            <h2 class="categorie-titre">Gestion de Versions (Git & GitHub)</h2>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git init</code>
+                    <p class="commande-desc">Initialise un nouveau dépôt Git local dans le dossier courant[cite: 78, 81].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git init')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git clone https://github.com/utilisateur/depot.git</code>
+                    <p class="commande-desc">Télécharge localement une copie complète d'un dépôt distant[cite: 78, 81].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git clone https://github.com/utilisateur/depot.git')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git status</code>
+                    <p class="commande-desc">Vérifie l'état des fichiers (modifiés, non suivis ou prêts dans l'index avant commit)[cite: 79, 81].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git status')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git add .</code>
+                    <p class="commande-desc">Ajoute tous les fichiers modifiés ou créés dans l'index (zone de préparation du commit)[cite: 79, 81].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git add .')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git commit -m "Message explicatif"</code>
+                    <p class="commande-desc">Enregistre définitivement les fichiers indexés dans l'historique du dépôt local[cite: 79].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git commit -m &quot;Message explicatif&quot;')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git diff --cached</code>
+                    <p class="commande-desc">Affiche les différences exactes entre les fichiers préparés dans l'index et le dernier commit[cite: 79].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git diff --cached')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git log --graph --pretty=short</code>
+                    <p class="commande-desc">Affiche l'historique condensé des commits avec l'arbre graphique des branches[cite: 80].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git log --graph --pretty=short')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git reset fichier.txt</code>
+                    <p class="commande-desc">Retire un fichier de l'index (annule git add) sans supprimer les modifications dans le fichier[cite: 79, 80].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git reset fichier.txt')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git checkout -- fichier.txt</code>
+                    <p class="commande-desc">Annule les modifications locales d'un fichier en le restaurant à son état du dernier commit[cite: 80].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git checkout -- fichier.txt')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git pull --rebase origin main</code>
+                    <p class="commande-desc">Récupère les modifications distantes et replace les commits locaux par-dessus sans créer de commit de fusion.</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git pull --rebase origin main')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>git push</code>
+                    <p class="commande-desc">Envoie les commits locaux validés vers le dépôt distant (GitHub).</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'git push')">Copier</button>
             </div>
 
         </main>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Cookies, Sécurité Web & RGPD | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>Cookies Web, Sécurité des Sessions & RGPD</h1>
+            <p>Fonctionnement technique, inspection via DevTools, risques d'attaques (XSS/CSRF/MitM) et Privacy-by-Design</p>
+            <span class="badge-header">BTS SIO SISR • Bloc 3 • Cybersécurité & Droit</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <h2>1. Qu'est-ce qu'un cookie informatique ?</h2>
+            <p>Le protocole <strong>HTTP est sans état (stateless)</strong> : par défaut, un serveur web ne retient rien d'une page à l'autre. Un <strong>cookie</strong> est un petit fichier texte (limité à environ 4 Ko) déposé par un serveur web dans le navigateur de l'utilisateur via l'en-tête HTTP <code>Set-Cookie</code>, puis renvoyé automatiquement à chaque nouvelle requête vers ce domaine.</p>
+            <pre><code>Set-Cookie: session_id=a94f8e2c71b0; Path=/; Secure; HttpOnly; SameSite=Strict</code></pre>
+            <ul>
+                <li><strong>Inspection rapide :</strong> Il est très simple de lire et lister tous les cookies enregistrés dans un navigateur via les <strong>Outils de développement (F12)</strong> → onglet <em>Stockage</em> (Firefox) ou <em>Application</em> (Chrome/Edge) → section <em>Cookies</em>.</li>
+                <li><strong>Types courants :</strong> Cookies techniques/de session (panier e-commerce, maintien de connexion), cookies de préférences (langue, thème) et cookies tiers/publicitaires (traçage multi-sites).</li>
+            </ul>
+
+            <h2>2. Enjeux & Réglementation RGPD (Privacy-by-Design)</h2>
+            <p>Au-delà du confort de navigation, les cookies tiers permettent le <strong>profilage comportemental</strong> des internautes à des fins publicitaires[cite: 77]. Le <strong>RGPD</strong> (Règlement Général sur la Protection des Données) et les recommandations de la <strong>CNIL</strong> encadrent strictement leur usage[cite: 77] :</p>
+            <ul>
+                <li><strong>Consentement préalable (Opt-in) :</strong> Aucun cookie non essentiel (publicité, mesure d'audience non exemptée) ne doit être déposé avant l'accord explicite de l'utilisateur.</li>
+                <li><strong>Refus aussi simple que l'acceptation :</strong> Le bandeau doit proposer un bouton <em>« Tout refuser »</em> ou <em>« Continuer sans accepter »</em> au même niveau et avec la même visibilité que <em>« Tout accepter »</em> (interdiction des <em>dark patterns</em>).</li>
+                <li><strong>Privacy-by-Design :</strong> Intégrer le respect de la vie privée dès la conception du site (minimisation des données collectées, durée de vie limitée à 13 mois maximum pour le consentement, retrait possible à tout moment)[cite: 77].</li>
+            </ul>
+
+            <h2>3. Risques de sécurité & Attaques liées aux cookies</h2>
+            <p>Puisqu'un cookie de session sert souvent de « laissez-passer » authentifié auprès d'un site, son vol ou sa falsification permet d'usurper l'identité d'un utilisateur (<em>Session Hijacking</em>)[cite: 77] :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Attaque</th>
+                        <th>Mécanisme</th>
+                        <th>Contre-mesure (Attribut de sécurité)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>XSS (Cross-Site Scripting)</strong></td>
+                        <td>Injection de code JavaScript malveillant dans une page pour lire <code>document.cookie</code> et exfiltrer le jeton de session.</td>
+                        <td>Ajouter l'attribut <code>HttpOnly</code> (rend le cookie inaccessible au JavaScript).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Écoute réseau (Man-in-the-Middle)</strong></td>
+                        <td>Interception du trafic HTTP en clair (ex. sur un Wi-Fi public) pour récupérer le cookie de session.</td>
+                        <td>Ajouter l'attribut <code>Secure</code> (transmis uniquement en <strong>HTTPS</strong> chiffré).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CSRF (Cross-Site Request Forgery)</strong></td>
+                        <td>Un site tiers piégé force le navigateur de la victime à envoyer une requête authentifiée avec ses cookies actifs.</td>
+                        <td>Configurer l'attribut <code>SameSite=Strict</code> ou <code>Lax</code>.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Énoncé complet du TP (PDF)</h2>
+            <p>Consulte directement le sujet du TP ci-dessous ou <a href="../docs/tp3-cookies-rgpd.pdf" target="_blank">ouvre le PDF dans un nouvel onglet</a> :</p>
+            <iframe src="../docs/tp3-cookies-rgpd.pdf" class="pdf-cadre" title="TP3 Cookies et RGPD"></iframe>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Git : Gestion de Versions & Workflow | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>Git : Gestion de Versions Décentralisée</h1>
+            <p>Cycle de vie d'un dépôt (Working Copy, Index, Repository), commits, historique et navigation temporelle</p>
+            <span class="badge-header">BTS SIO SISR • Bloc 1 / Développement • Versioning</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <h2>1. Principe & Architecture de Git</h2>
+            <p><strong>Git</strong> est un logiciel libre de gestion de versions décentralisé créé par Linus Torvalds[cite: 78]. Contrairement aux systèmes centralisés, chaque utilisateur dispose d'une copie complète de l'historique du projet en local et peut travailler hors-ligne avant de synchroniser ses modifications[cite: 78].</p>
+            <p>Un projet Git s'articule autour de <strong>trois zones fondamentales</strong>[cite: 79] :</p>
+            <ul>
+                <li><strong>Working Copy (Répertoire de travail) :</strong> Vos fichiers réels visibles et modifiables sur le disque[cite: 78, 79].</li>
+                <li><strong>Index (Staging Area) :</strong> Zone tampon temporaire où l'on prépare les fichiers avant de les valider[cite: 79].</li>
+                <li><strong>Repository (Dépôt local <code>.git</code>) :</strong> La base de données contenant l'historique complet et immuable de tous les commits (identifiés par un hash SHA-1)[cite: 78, 79].</li>
+            </ul>
+
+            <h2>2. Workflow de base : Initialiser, Ajouter, Commiter</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Commande</th>
+                        <th>Effet sur les zones Git</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Créer un dépôt</strong></td>
+                        <td><code>git init nom_dossier</code></td>
+                        <td>Initialise un nouveau dépôt vide (crée le dossier caché <code>.git</code>)[cite: 78].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cloner un dépôt</strong></td>
+                        <td><code>git clone &lt;url&gt;</code></td>
+                        <td>Télécharge localement un dépôt distant existant avec tout son historique[cite: 78, 81].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vérifier l'état</strong></td>
+                        <td><code>git status</code></td>
+                        <td>Affiche les fichiers modifiés, non suivis (<em>untracked</em>) ou prêts dans l'Index[cite: 79, 81].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Préparer (Index)</strong></td>
+                        <td><code>git add &lt;fichier&gt;</code></td>
+                        <td>Envoie les modifications de la copie de travail vers l'Index (zone de transit)[cite: 79, 81].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Valider (Commit)</strong></td>
+                        <td><code>git commit -m "Message"</code></td>
+                        <td>Enregistre définitivement l'état de l'Index dans l'historique du dépôt[cite: 79].</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comparer</strong></td>
+                        <td><code>git diff</code> / <code>git diff --cached</code></td>
+                        <td><code>git diff</code> compare Working Copy ↔ Index ; <code>--cached</code> compare Index ↔ dernier commit[cite: 79].</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>3. Historique, Annulation & Voyage dans le temps</h2>
+            <ul>
+                <li><strong>Consulter l'historique :</strong> <code>git log</code> (ou <code>git log --graph --pretty=short</code>) affiche la chronologie des commits, leurs auteurs et leurs empreintes SHA-1[cite: 79, 80].</li>
+                <li><strong>Retirer de l'Index sans perdre le travail :</strong> <code>git reset &lt;fichier&gt;</code> annule un <code>git add</code> et renvoie le fichier dans la copie de travail[cite: 79, 80].</li>
+                <li><strong>Annuler les modifications locales :</strong> <code>git checkout -- &lt;fichier&gt;</code> restaure le fichier tel qu'il était au dernier commit (écrase les modifications non commitées)[cite: 80].</li>
+                <li><strong>Voyager dans l'historique :</strong> <code>git checkout &lt;COMMIT_ID&gt;</code> bascule temporairement le dossier dans l'état d'un ancien commit (état <em>detached HEAD</em>)[cite: 80]. Pour revenir au présent, exécuter <code>git checkout main</code> (ou <code>master</code>)[cite: 80].</li>
+            </ul>
+
+            <div class="encadre">
+                <strong>Synchronisation distante (GitHub) :</strong><br>
+                • <code>git fetch origin</code> : récupère les nouveautés du serveur sans toucher à vos fichiers[cite: 81].<br>
+                • <code>git pull origin main</code> : télécharge et fusionne immédiatement les modifications distantes[cite: 81].<br>
+                • <code>git push</code> : envoie vos commits locaux vers le dépôt distant.
+            </div>
+
+            <h2>4. Énoncé complet & Cheat Sheet du TP (PDF)</h2>
+            <p>Consulte directement le sujet complet et le mémo Git ci-dessous ou <a href="../docs/tp4-git.pdf" target="_blank">ouvre le PDF dans un nouvel onglet</a> :</p>
+            <iframe src="../docs/tp4-git.pdf" class="pdf-cadre" title="TP Git BTS SIO SISR"></iframe>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>
