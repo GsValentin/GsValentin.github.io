@@ -36,7 +36,7 @@
                         <p>Commutation Cisco, segmentation VLAN, liens trunk 802.1Q, routage inter-VLAN (Router-on-a-stick & Switch L3).</p>
                     </div>
                     <div class="tags">
-                        <span class="tag">2 séances</span>
+                        <span class="tag">3 séances</span>
                         <span class="tag">Cisco IOS</span>
                         <span class="tag">Réseau</span>
                     </div>
@@ -56,10 +56,10 @@
                         <p>Gestion du parc informatique, assistance utilisateurs (Helpdesk), GLPI et maintenance des postes.</p>
                     </div>
                     <div class="tags">
-                        <span class="tag">2 séance</span>
+                        <span class="tag">3 séances</span>
                         <span class="tag">Support</span>
                         <span class="tag">Parc IT</span>
-                    </div>
+                    </div> 
                 </summary>
                 <div class="card-liste-cours">
                     <a href="cours/installation-vm-vmware.html" class="btn btn-primary">TP 1 : Installation VM VMware Workstation</a>
@@ -205,6 +205,15 @@
             <p>© 2026 Valentin Georges — Hébergé sur GitHub Pages</p>
         </footer>
     </div>
-
+<script>
+        document.querySelectorAll('details.card').forEach(card => {
+            const nbCours = card.querySelectorAll('.card-liste-cours a.btn').length;
+            const premierTag = card.querySelector('.tags .tag');
+            if (premierTag) {
+                premierTag.textContent = nbCours + (nbCours > 1 ? ' séances' : ' séance');
+            }
+        });
+    </script>
+</body>
 </body>
 </html>
