@@ -5,276 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ressources & Commandes Utiles | Valentin Georges</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Barre de navigation */
-        .top-nav {
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-        }
-        .top-nav .btn {
-            flex: 0 1 auto;
-        }
-
-        /* Barre de recherche */
-        .search-box {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .search-box:focus {
-            border-color: var(--accent-caramel);
-        }
-
-        /* Sections par catégorie */
-        .category-title {
-            color: var(--accent-caramel);
-            font-size: 1.3rem;
-            margin: 2.2rem 0 1rem 0;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        /* Ligne de commande */
-        .cmd-item {
-            background-color: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: 10px;
-            padding: 1rem 1.25rem;
-            margin-bottom: 0.85rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            transition: border-color 0.2s;
-        }
-        .cmd-item:hover {
-            border-color: var(--border-accent);
-        }
-        .cmd-info {
-            flex: 1;
-            min-width: 240px;
-        }
-        .cmd-desc {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 0.35rem;
-        }
-        .copy-btn {
-            background-color: var(--accent-subtle);
-            color: var(--accent-caramel);
-            border: 1px solid var(--border-accent);
-            padding: 0.45rem 0.9rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .copy-btn:hover {
-            background-color: var(--accent-caramel);
-            color: #120F0D;
-        }
-    </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- BOUTONS DE NAVIGATION -->
-        <nav class="top-nav">
+        <!-- BOUTON RETOUR EN HAUT À GAUCHE -->
+        <nav class="nav-barre">
             <a href="index.html" class="btn btn-secondary">← Portfolio</a>
-            <a href="ressources.html" class="btn btn-primary">Ressources Utiles</a>
         </nav>
 
         <header>
             <h1>Ressources & Commandes</h1>
-            <p>Mémo rapide Windows, Réseau, Active Directory et Linux</p>
+            <p>Mémo rapide Windows, Réseau, Active Directory, Cisco et Linux</p>
             <span class="badge-header">Boîte à outils • Helpdesk & SISR</span>
         </header>
 
         <!-- BARRE DE RECHERCHE INSTANTANÉE -->
-        <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une commande ou un mot-clé (ex: réseau, ip, ad, grep, ncpa)...">
+        <input type="text" id="searchInput" class="barre-recherche" placeholder="Rechercher une commande ou un mot-clé (ex: réseau, ip, ad, vlan, ncpa)...">
 
         <main id="cmdList">
 
             <!-- CATÉGORIE 1 : RACCOURCIS WINDOWS (WIN + R) -->
-            <h2 class="category-title">Raccourcis Console Windows (Win + R)</h2>
+            <h2 class="categorie-titre">Raccourcis Console Windows (Win + R)</h2>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>ncpa.cpl</code>
-                    <p class="cmd-desc">Ouvre directement les connexions réseau (cartes Ethernet, Wi-Fi, configuration IPv4).</p>
+                    <p class="commande-desc">Ouvre directement les connexions réseau (cartes Ethernet, Wi-Fi, configuration IPv4).</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'ncpa.cpl')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'ncpa.cpl')">Copier</button>
             </div>
 
             <!-- CATÉGORIE 2 : RÉSEAU & DIAGNOSTIC WINDOWS -->
-            <h2 class="category-title">Réseau & Diagnostic (CMD / PowerShell)</h2>
+            <h2 class="categorie-titre">Réseau & Diagnostic (CMD / PowerShell)</h2>
 
-
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>gpupdate /force</code>
-                    <p class="cmd-desc">Force l'actualisation immédiate des stratégies de groupe (GPO) utilisateur et ordinateur.</p>
+                    <p class="commande-desc">Force l'actualisation immédiate des stratégies de groupe (GPO) utilisateur et ordinateur.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'gpupdate /force')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'gpupdate /force')">Copier</button>
             </div>
 
             <!-- CATÉGORIE 3 : LINUX (DEBIAN / UBUNTU) -->
-            <h2 class="category-title">Administration Linux (Debian / Ubuntu)</h2>
+            <h2 class="categorie-titre">Administration Linux (Debian / Ubuntu)</h2>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>ip a</code>
-                    <p class="cmd-desc">Affiche les interfaces réseau et leurs adresses IP attribuées.</p>
+                    <p class="commande-desc">Affiche les interfaces réseau et leurs adresses IP attribuées.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'ip a')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'ip a')">Copier</button>
             </div>
-<!-- CATÉGORIE 4 : ADMINISTRATION SWITCH & VLAN (CISCO IOS) -->
-            <h2 class="category-title">Administration Switch & VLAN (Cisco IOS)</h2>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <!-- CATÉGORIE 4 : ADMINISTRATION SWITCH & VLAN (CISCO IOS) -->
+            <h2 class="categorie-titre">Administration Switch & VLAN (Cisco IOS)</h2>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>show vlan brief</code>
-                    <p class="cmd-desc">Affiche tous les VLANs configurés, leur statut et les ports en mode access associés.</p>
+                    <p class="commande-desc">Affiche tous les VLANs configurés, leur statut et les ports en mode access associés.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'show vlan brief')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'show vlan brief')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>show interfaces trunk</code>
-                    <p class="cmd-desc">Vérifie les liens trunk actifs, l'encapsulation 802.1Q, le VLAN natif et les VLANs autorisés.</p>
+                    <p class="commande-desc">Vérifie les liens trunk actifs, l'encapsulation 802.1Q, le VLAN natif et les VLANs autorisés.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'show interfaces trunk')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'show interfaces trunk')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>show interfaces fa0/1 switchport</code>
-                    <p class="cmd-desc">Affiche le détail complet d'un port (mode admin/opérationnel, VLAN access, VLAN natif et VLAN voix).</p>
+                    <p class="commande-desc">Affiche le détail complet d'un port (mode admin/opérationnel, VLAN access, VLAN natif et VLAN voix).</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'show interfaces fa0/1 switchport')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'show interfaces fa0/1 switchport')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>show mac address-table</code>
-                    <p class="cmd-desc">Consulte la table des adresses MAC apprises par le commutateur, classées par numéro de VLAN.</p>
+                    <p class="commande-desc">Consulte la table des adresses MAC apprises par le commutateur, classées par numéro de VLAN.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'show mac address-table')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'show mac address-table')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>switchport mode access</code>
-                    <p class="cmd-desc">Force un port en mode accès (un seul VLAN de données, désactive la négociation trunk).</p>
+                    <p class="commande-desc">Force un port en mode accès (un seul VLAN de données, désactive la négociation trunk).</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'switchport mode access')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'switchport mode access')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>switchport access vlan 10</code>
-                    <p class="cmd-desc">Affecte le port actif au VLAN spécifié (ici le VLAN 10).</p>
+                    <p class="commande-desc">Affecte le port actif au VLAN spécifié (ici le VLAN 10).</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'switchport access vlan 10')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'switchport access vlan 10')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>switchport voice vlan 150</code>
-                    <p class="cmd-desc">Ajoute un VLAN voix dédié sur un port access accueillant un téléphone IP et un PC.</p>
+                    <p class="commande-desc">Ajoute un VLAN voix dédié sur un port access accueillant un téléphone IP et un PC.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'switchport voice vlan 150')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'switchport voice vlan 150')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>switchport mode trunk</code>
-                    <p class="cmd-desc">Configure le port en lien trunk (transport multi-VLANs étiquetés 802.1Q entre équipements).</p>
+                    <p class="commande-desc">Configure le port en lien trunk (transport multi-VLANs étiquetés 802.1Q entre équipements).</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'switchport mode trunk')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'switchport mode trunk')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>switchport trunk native vlan 999</code>
-                    <p class="cmd-desc">Définit le VLAN natif (trafic non étiqueté) sur un VLAN vide dédié pour sécuriser le trunk.</p>
+                    <p class="commande-desc">Définit le VLAN natif (trafic non étiqueté) sur un VLAN vide dédié pour sécuriser le trunk.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'switchport trunk native vlan 999')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'switchport trunk native vlan 999')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>switchport trunk allowed vlan 10,20,99</code>
-                    <p class="cmd-desc">Restreint le passage sur le trunk uniquement aux VLANs listés.</p>
+                    <p class="commande-desc">Restreint le passage sur le trunk uniquement aux VLANs listés.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'switchport trunk allowed vlan 10,20,99')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'switchport trunk allowed vlan 10,20,99')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>interface range fastEthernet 0/3-24</code>
-                    <p class="cmd-desc">Sélectionne une plage de ports pour les configurer ou les éteindre (shutdown) simultanément.</p>
+                    <p class="commande-desc">Sélectionne une plage de ports pour les configurer ou les éteindre (shutdown) simultanément.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'interface range fastEthernet 0/3-24')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'interface range fastEthernet 0/3-24')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
-                    <code>copy running-config startup-config</code>
-                    <p class="cmd-desc">Sauvegarde la configuration active (RAM) dans la mémoire non volatile (NVRAM) du switch.</p>
-                </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'copy running-config startup-config')">Copier</button>
-            </div>
-<div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>encapsulation dot1Q 10</code>
-                    <p class="cmd-desc">Associe une sous-interface de routeur (ex: Gi0/0.10) aux trames étiquetées du VLAN 10.</p>
+                    <p class="commande-desc">Associe une sous-interface de routeur (ex: Gi0/0.10) aux trames étiquetées du VLAN 10.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'encapsulation dot1Q 10')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'encapsulation dot1Q 10')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>ip default-gateway 192.168.99.254</code>
-                    <p class="cmd-desc">Définit la passerelle par défaut d'un commutateur de niveau 2 pour l'administrer depuis un autre VLAN.</p>
+                    <p class="commande-desc">Définit la passerelle par défaut d'un commutateur de niveau 2 pour l'administrer depuis un autre VLAN.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'ip default-gateway 192.168.99.254')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'ip default-gateway 192.168.99.254')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>ip routing</code>
-                    <p class="cmd-desc">Active la fonction de routage IP sur un commutateur de niveau 3 (ex: Catalyst 3560) pour router entre ses SVI.</p>
+                    <p class="commande-desc">Active la fonction de routage IP sur un commutateur de niveau 3 (ex: Catalyst 3560) pour router entre ses SVI.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'ip routing')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'ip routing')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>show ip route</code>
-                    <p class="cmd-desc">Affiche la table de routage d'un routeur ou switch L3 (les réseaux connectés apparaissent avec le code C).</p>
+                    <p class="commande-desc">Affiche la table de routage d'un routeur ou switch L3 (les réseaux connectés apparaissent avec le code C).</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'show ip route')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'show ip route')">Copier</button>
             </div>
 
-            <div class="cmd-item">
-                <div class="cmd-info">
+            <div class="commande-ligne">
+                <div class="commande-info">
                     <code>show interfaces gigabitEthernet 0/0 | include packets</code>
-                    <p class="cmd-desc">Filtre les statistiques d'une interface Cisco pour afficher uniquement les compteurs de paquets entrants et sortants.</p>
+                    <p class="commande-desc">Filtre les statistiques d'une interface Cisco pour afficher uniquement les compteurs de paquets entrants et sortants.</p>
                 </div>
-                <button class="copy-btn" onclick="copyCmd(this, 'show interfaces gigabitEthernet 0/0 | include packets')">Copier</button>
+                <button class="btn-copier" onclick="copyCmd(this, 'show interfaces gigabitEthernet 0/0 | include packets')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>copy running-config startup-config</code>
+                    <p class="commande-desc">Sauvegarde la configuration active (RAM) dans la mémoire non volatile (NVRAM) du switch ou routeur.</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'copy running-config startup-config')">Copier</button>
             </div>
 
         </main>
@@ -284,7 +204,7 @@
         </footer>
     </div>
 
-    <!-- PETIT SCRIPT POUR COPIER ET FILTRER INSTANTANÉMENT -->
+    <!-- SCRIPT DE COPIE ET RECHERCHE INSTANTANÉE -->
     <script>
         function copyCmd(btn, text) {
             navigator.clipboard.writeText(text);
@@ -295,7 +215,7 @@
 
         document.getElementById('searchInput').addEventListener('keyup', function() {
             const filter = this.value.toLowerCase();
-            const items = document.querySelectorAll('.cmd-item');
+            const items = document.querySelectorAll('.commande-ligne');
             items.forEach(item => {
                 const text = item.innerText.toLowerCase();
                 item.style.display = text.includes(filter) ? 'flex' : 'none';

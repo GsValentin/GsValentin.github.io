@@ -1,88 +1,202 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentin Georges | Portfolio BTS SIO SISR</title>
+    <title>Valentin Georges | Portfolio & Cours BTS SIO SISR</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <nav style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-bottom: 2rem;">
-            <a href="index.html" class="btn btn-secondary" style="flex: 0 1 auto;">Portfolio</a>
-            <a href="ressources.html" class="btn btn-primary" style="flex: 0 1 auto;">Ressources Utiles</a>
+<!-- BARRE DE NAVIGATION -->
+        <nav class="nav-barre nav-droite">
+            <a href="ressources.html" class="btn btn-primary">Ressources Utiles</a>
         </nav>
+
         <header>
             <h1>Valentin Georges</h1>
             <p>Technicien Support IT & Étudiant BTS SIO option SISR</p>
             <span class="badge-header">Infrastructure • Systèmes & Réseaux • Web Apps</span>
         </header>
 
-        <main class="grid">
+        <!-- =========================================================
+             SECTION 1 : MES COURS BTS SIO SISR (CLIC POUR DÉPLIER)
+             ========================================================= -->
+        <h2 class="categorie-titre">Mes Cours & TP — BTS SIO SISR</h2>
 
-            <!-- PROJET 1 -->
-            <article class="card">
-                <div>
-                    <h2>Portail de Documentation SISR</h2>
-                    <p>Base de connaissances personnelle regroupant mes fiches pratiques Linux (Debian/Ubuntu), commandes réseau et guides d'installation de VM.</p>
+        <section class="grid">
+
+            <!-- BLOC 2 : SYSTÈMES & RÉSEAUX -->
+            <details class="card">
+                <summary>
+                    <div>
+                        <h2>Bloc 2 — Systèmes & Réseaux</h2>
+                        <p>Commutation Cisco, segmentation VLAN, liens trunk 802.1Q, routage inter-VLAN (Router-on-a-stick & Switch L3).</p>
+                    </div>
                     <div class="tags">
-                        <span class="tag">HTML/CSS</span>
-                        <span class="tag">Linux</span>
+                        <span class="tag">2 séances</span>
+                        <span class="tag">Cisco IOS</span>
                         <span class="tag">Réseau</span>
                     </div>
+                </summary>
+                <div class="card-liste-cours">
+                    <a href="cours/tp-vlan-cisco1.html" class="btn btn-primary">TP 1 : Création VLANs & Trunk</a>
+                    <a href="cours/tp-vlan-cisco2.html" class="btn btn-primary">TP 2 : Routage Inter-VLAN & L3</a>
                 </div>
-                <div class="links">
-                    <a href="https://github.com/GsValentin" target="_blank" class="btn btn-secondary">Code GitHub</a>
-                    <a href="#" target="_blank" class="btn btn-primary">Voir le site</a>
-                </div>
-            </article>
-            <!-- PROJET 2 -->   
-             <article class="card">
-                <div>
-                    <h2>TP Cisco Packet tracer</h2>
-                    <p>Collection de cours et travaux pratiques pour le BTS SIO option SISR, incluant des PDF, images et ressources pédagogiques.</p>
-                    <div class="tags">
-                        <span class="tag">BTS SIO</span>
-                        <span class="tag">SISR</span>
-                        <span class="tag">Éducation</span>
+            </details>
+
+            <!-- BLOC 1 : SUPPORT & PATRIMOINE IT -->
+            <details class="card">
+                <summary>
+                    <div>
+                        <h2>Bloc 1 — Support & Patrimoine IT</h2>
+                        <p>Gestion du parc informatique, assistance utilisateurs (Helpdesk), GLPI et maintenance des postes.</p>
                     </div>
+                    <div class="tags">
+                        <span class="tag">0 séance</span>
+                        <span class="tag">Support</span>
+                        <span class="tag">Parc IT</span>
+                    </div>
+                </summary>
+                <div class="card-liste-cours">
+                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
                 </div>
-                <div class="links">
-                    <a href="" target="_blank" class="btn btn-secondary">Voir le contenu</a>
+            </details>
+
+            <!-- BLOC 3 : CYBERSÉCURITÉ -->
+            <details class="card">
+                <summary>
+                    <div>
+                        <h2>Bloc 3 — Cybersécurité SISR</h2>
+                        <p>Sécurisation des infrastructures, durcissement d'équipements, ACL, pare-feu, VPN et analyse de trames.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">0 séance</span>
+                        <span class="tag">Sécurité</span>
+                        <span class="tag">Wireshark</span>
+                    </div>
+                </summary>
+                <div class="card-liste-cours">
+                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
                 </div>
-            </article>
-            <!-- TP VLAN CISCO -->
+            </details>
+
+            <!-- ATELIER PROFESSIONNEL -->
+            <details class="card">
+                <summary>
+                    <div>
+                        <h2>Atelier Professionnel (AP)</h2>
+                        <p>Mises en situation professionnelles, projets d'infrastructure en équipe et documentation technique.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">0 séance</span>
+                        <span class="tag">Projet</span>
+                        <span class="tag">Infrastructure</span>
+                    </div>
+                </summary>
+                <div class="card-liste-cours">
+                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
+                </div>
+            </details>
+
+            <!-- CEJM -->
+            <details class="card">
+                <summary>
+                    <div>
+                        <h2>CEJM</h2>
+                        <p>Culture Économique, Juridique et Managériale : environnement des entreprises, contrats et droit du numérique.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">0 séance</span>
+                        <span class="tag">Économie</span>
+                        <span class="tag">Droit</span>
+                    </div>
+                </summary>
+                <div class="card-liste-cours">
+                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
+                </div>
+            </details>
+
+            <!-- CGE -->
+            <details class="card">
+                <summary>
+                    <div>
+                        <h2>Culture Générale & Expression</h2>
+                        <p>Synthèse de documents, écriture personnelle et méthodologie de l'épreuve écrite BTS.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">0 séance</span>
+                        <span class="tag">Synthèse</span>
+                    </div>
+                </summary>
+                <div class="card-liste-cours">
+                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
+                </div>
+            </details>
+
+            <!-- MATHÉMATIQUES -->
+            <details class="card">
+                <summary>
+                    <div>
+                        <h2>Mathématiques</h2>
+                        <p>Numération (binaire, hexadécimal), logique booléenne, graphes, matrices et algorithmique.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">0 séance</span>
+                        <span class="tag">Binaire / Hexa</span>
+                        <span class="tag">Logique</span>
+                    </div>
+                </summary>
+                <div class="card-liste-cours">
+                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
+                </div>
+            </details>
+
+            <!-- ANGLAIS -->
+            <details class="card">
+                <summary>
+                    <div>
+                        <h2>Anglais Technique</h2>
+                        <p>Vocabulaire informatique et réseau, compréhension de documentation technique et expression orale.</p>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">0 séance</span>
+                        <span class="tag">IT English</span>
+                    </div>
+                </summary>
+                <div class="card-liste-cours">
+                    <span class="btn btn-secondary">Aucun cours publié pour le moment</span>
+                </div>
+            </details>
+
+        </section>
+
+        <!-- =========================================================
+             SECTION 2 : PROJETS & RÉALISATIONS PERSONNELLES
+             ========================================================= -->
+        <h2 class="categorie-titre">Mes Projets & Labs</h2>
+
+        <section class="grid">
+
+            <!-- PROJET 2 : LAB VMWARE -->
             <article class="card">
                 <div>
-                    <h2>Configuration VLANs & Trunk Cisco</h2>
-                    <p>Segmentation niveau 2 sur Catalyst 2960 : ports access, trunk 802.1Q, VLAN natif, SVI de management, VoIP et durcissement des ports libres.</p>
+                    <h2>Lab Virtualisation & Active Directory</h2>
+                    <p>Architecture réseau multi-machines sous VMware Workstation combinant Windows Server (AD DS), clients Windows 11 et serveurs Debian.</p>
                     <div class="tags">
-                        <span class="tag">Cisco IOS</span>
-                        <span class="tag">VLAN / Trunk</span>
-                        <span class="tag">Packet Tracer</span>
+                        <span class="tag">VMware</span>
+                        <span class="tag">Windows Server</span>
+                        <span class="tag">Active Directory</span>
                     </div>
                 </div>
                 <div class="links">
-                    <a href="cours/tp-vlan-cisco1.html" class="btn btn-primary">Lire la fiche</a>
+                    <a href="https://github.com/GsValentin" target="_blank" class="btn btn-secondary">Documentation</a>
                 </div>
             </article>
-<!-- TP 2 ROUTAGE INTER-VLAN -->
-            <article class="card">
-                <div>
-                    <h2>Routage Inter-VLAN & Switch L3</h2>
-                    <p>Communication inter-VLAN en Router-on-a-stick (sous-interfaces 802.1Q sur routeur 1941), passerelle switch L2 et routage matériel sur Catalyst 3560.</p>
-                    <div class="tags">
-                        <span class="tag">Cisco IOS</span>
-                        <span class="tag">Inter-VLAN</span>
-                        <span class="tag">Switch L3</span>
-                    </div>
-                </div>
-                <div class="links">
-                    <a href="cours/tp-vlan-cisco2.html" class="btn btn-primary">Lire la fiche</a>
-                </div>
-            </article>
-        </main>
+
+        </section>
 
         <footer>
             <p>© 2026 Valentin Georges — Hébergé sur GitHub Pages</p>

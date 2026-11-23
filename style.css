@@ -71,6 +71,10 @@ a:hover {
     margin-bottom: 2.5rem;
 }
 
+.nav-barre.nav-droite {
+    justify-content: flex-end;
+}
+
 .nav-barre .btn {
     flex: 0 1 auto;
 }
@@ -420,4 +424,73 @@ footer {
     border-top: 1px solid var(--border-subtle);
     color: var(--text-muted);
     font-size: 0.85rem;
+}
+/* ==========================================================================
+   CARTES DE COURS DÉPLIABLES (ACCORDÉON NATIF)
+   ========================================================================== */
+details.card {
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+details.card summary {
+    list-style: none;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+}
+
+details.card summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Indicateur visuel (+ / −) en bas à droite, aligné avec les tags */
+details.card summary::after {
+    content: "+";
+    position: absolute;
+    bottom: 1.65rem;
+    right: 1.75rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: var(--accent-subtle);
+    color: var(--accent-caramel);
+    border: 1px solid var(--border-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: transform 0.25s ease, background-color 0.2s ease;
+}
+
+details.card[open] summary::after {
+    content: "−";
+    background-color: var(--accent-caramel);
+    color: #120F0D;
+}
+
+details.card summary .tags {
+    margin-bottom: 0;
+    padding-right: 2.5rem; /* Évite qu'un tag ne passe sous le bouton + */
+}
+
+/* Contenu qui apparaît quand on clique sur la carte */
+.card-liste-cours {
+    padding: 1.25rem 1.75rem 1.75rem 1.75rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    cursor: default;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.card-liste-cours .btn {
+    justify-content: flex-start;
+    text-align: left;
 }
