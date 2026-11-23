@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Linux Debian : Analyse de Logs avec grep | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>Analyse de Logs sous Debian avec grep</h1>
+            <p>Filtrage de fichiers journaux, options de recherche, expressions régulières (Regex) et chaînage par tube (pipe)</p>
+            <span class="badge-header">BTS SIO SISR • Bloc 2 • Administration Linux</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <h2>1. Objectif du TP & Syntaxe de base</h2>
+            <p>Sous Linux (Debian/Ubuntu), la commande <code>grep</code> (<em>Global Regular Expression Print</em>) permet d'extraire rapidement des événements critiques (erreurs, alertes, connexions) au sein de fichiers journaux volumineux (ex. <code>linux-log_file_1200_lines.txt</code>)[cite: 72].</p>
+            <pre><code>grep [OPTIONS] "MOTIF" fichier.log</code></pre>
+
+            <h2>2. Mémo des options essentielles de grep</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Rôle</th>
+                        <th>Exemple concret du TP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>-c</code></td>
+                        <td>Compte le nombre total de lignes correspondantes au lieu de les afficher[cite: 72].</td>
+                        <td><code>grep -c "ERROR" linux-log_file_1200_lines.txt</code> → <code>297</code>[cite: 72]</td>
+                    </tr>
+                    <tr>
+                        <td><code>-i</code></td>
+                        <td>Ignore la casse (insensible aux majuscules et minuscules)[cite: 72, 73].</td>
+                        <td><code>grep -i "connection lost" fichier.log</code>[cite: 72]</td>
+                    </tr>
+                    <tr>
+                        <td><code>-v</code></td>
+                        <td>Inverse la recherche : affiche toutes les lignes qui <strong>ne contiennent pas</strong> le motif[cite: 73].</td>
+                        <td><code>grep -iv "info" fichier.log</code>[cite: 73]</td>
+                    </tr>
+                    <tr>
+                        <td><code>-E</code></td>
+                        <td>Active les expressions régulières étendues (Regex : ancres, opérateurs OR <code>|</code>, etc.)[cite: 72].</td>
+                        <td><code>grep -i -E "connection lost" fichier.log</code>[cite: 72]</td>
+                    </tr>
+                    <tr>
+                        <td><code>-w</code></td>
+                        <td>Recherche le mot entier exact (évite les sous-chaînes)[cite: 75].</td>
+                        <td><code>grep -w "user" fichier.log</code>[cite: 75]</td>
+                    </tr>
+                    <tr>
+                        <td><code>-r</code></td>
+                        <td>Recherche récursive à travers tous les fichiers d'un répertoire[cite: 74].</td>
+                        <td><code>grep -r "Server started" fichier.log</code>[cite: 74]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>3. Cas pratiques d'analyse de logs</h2>
+
+            <h3>Filtrer par horaire précis</h3>
+            <p>Pour isoler tous les événements survenus à 8h00 (ex. démarrage du serveur)[cite: 75] :</p>
+            <pre><code>grep " 08:" linux-log_file_1200_lines.txt</code></pre>
+
+            <h3>Combiner début de ligne Regex et mot-clé via un Pipe (<code>|</code>)</h3>
+            <p>Pour afficher uniquement les lignes qui <strong>commencent par</strong> <code>[DEBUG]</code> (ancre <code>^</code> et échappement des crochets <code>\[</code>) <strong>ET</strong> qui contiennent le mot entier <code>user</code>[cite: 75] :</p>
+            <pre><code>grep '^\[DEBUG\]' linux-log_file_1200_lines.txt | grep -w 'user'</code></pre>
+
+            <div class="encadre">
+                <strong>Pourquoi échapper les crochets ?</strong> En expression régulière, <code>[DEBUG]</code> signifie « n'importe quelle lettre parmi D, E, B, U, G ». Pour chercher littéralement le texte <code>[DEBUG]</code> en début de ligne (<code>^</code>), il faut écrire <code>^\[DEBUG\]</code> et entourer le motif de guillemets simples <code>'...'</code> pour éviter que le shell Bash ne l'interprète.
+            </div>
+
+            <h2>4. Rendu complet du TP (PDF)</h2>
+            <p>Consulte directement le compte-rendu complet avec captures d'écran ci-dessous ou <a href="../docs/tp-debian-grep.pdf" target="_blank">ouvre le PDF dans un nouvel onglet</a> :</p>
+            <iframe src="../docs/tp-debian-grep.pdf" class="pdf-cadre" title="Rendu TP Debian grep"></iframe>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>

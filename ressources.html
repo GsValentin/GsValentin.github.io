@@ -57,6 +57,45 @@
                 </div>
                 <button class="btn-copier" onclick="copyCmd(this, 'ip a')">Copier</button>
             </div>
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>grep -c "ERROR" fichier.log</code>
+                    <p class="commande-desc">Compte le nombre de lignes contenant le mot-clé ERROR dans un fichier de logs[cite: 72].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'grep -c &quot;ERROR&quot; fichier.log')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>grep -iv "info" fichier.log</code>
+                    <p class="commande-desc">Affiche toutes les lignes ne contenant pas « info » (insensible à la casse, inverse le filtre)[cite: 73].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'grep -iv &quot;info&quot; fichier.log')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>grep -iE "connection lost" fichier.log</code>
+                    <p class="commande-desc">Recherche un motif avec expressions régulières étendues (-E) sans tenir compte des majuscules (-i)[cite: 72].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'grep -iE &quot;connection lost&quot; fichier.log')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>grep '^\[DEBUG\]' fichier.log | grep -w 'user'</code>
+                    <p class="commande-desc">Filtre les lignes commençant par [DEBUG] puis isole celles contenant le mot exact « user » via un tube (pipe)[cite: 75].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'grep \'^\\[DEBUG\\]\' fichier.log | grep -w \'user\'')">Copier</button>
+            </div>
+
+            <div class="commande-ligne">
+                <div class="commande-info">
+                    <code>grep " 08:" fichier.log</code>
+                    <p class="commande-desc">Filtre les événements survenus sur une plage horaire précise (ici à 08h) dans un journal[cite: 75].</p>
+                </div>
+                <button class="btn-copier" onclick="copyCmd(this, 'grep &quot; 08:&quot; fichier.log')">Copier</button>
+            </div>
 
             <!-- CATÉGORIE 4 : ADMINISTRATION SWITCH & VLAN (CISCO IOS) -->
             <h2 class="categorie-titre">Administration Switch & VLAN (Cisco IOS)</h2>
