@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Intrusion Simple Windows & Contre-mesures | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>Intrusion Physique sous Windows & Sécurisation</h1>
+            <p>Accès hors-ligne via Live-CD Linux, contournement de mot de passe local et protection par chiffrement</p>
+            <span class="badge-header">BTS SIO SISR • Bloc 3 • Cybersécurité</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <div class="encadre">
+                <strong>Cadre légal & déontologique :</strong> Les manipulations étudiées dans ce TP sont réalisées exclusivement en environnement isolé (machine virtuelle) dans un but pédagogique de compréhension des vulnérabilités physiques afin de déployer les contre-mesures adaptées[cite: 76].
+            </div>
+
+            <h2>1. La vulnérabilité de l'accès physique (Live-CD / Live-USB)</h2>
+            <p>Un simple mot de passe de session Windows protège l'ouverture de session lorsque le système d'exploitation est démarré, mais <strong>ne chiffre pas le contenu du disque dur</strong> par défaut[cite: 76].</p>
+            <ul>
+                <li><strong>Démarrage sur un système externe (Live-DVD Ubuntu) :</strong> En amorçant la machine sur une image ISO Linux en mode <em>Essayer Ubuntu</em>, le système Windows installé sur le disque virtuel n'est pas actif et ses verrous logiciels (ACL NTFS) sont ignorés par l'environnement Live[cite: 76].</li>
+                <li><strong>Conséquence :</strong> Il est possible de monter la partition Windows, de <strong>lire</strong> et de <strong>modifier</strong> librement les fichiers personnels (ex. <code>C:\Users\...\Desktop\toto.txt</code>) ou système sans connaître le mot de passe de session[cite: 76].</li>
+            </ul>
+
+            <h2>2. Contournement du mot de passe local Windows</h2>
+            <p>L'accès en écriture à la partition système <code>C:\Windows\System32\</code> depuis un support externe (ISO d'installation Windows ou Live-CD Linux) permet de réinitialiser le mot de passe d'un compte local administrateur[cite: 76] :</p>
+            <ul>
+                <li><strong>Technique de substitution d'utilitaire d'accessibilité (Utilman / Touches rémanentes) :</strong> Remplacer temporairement l'exécutable <code>utilman.exe</code> (ou <code>sethc.exe</code>) par <code>cmd.exe</code> permet, une fois revenu sur l'écran de connexion Windows, d'ouvrir une invite de commandes avec les privilèges maximums (<code>NT AUTHORITY\SYSTEM</code>) et de réinitialiser le mot de passe via la commande <code>net user &lt;utilisateur&gt; &lt;nouveau_mdp&gt;</code>.</li>
+                <li><strong>Outils dédiés (ex. <code>chntpw</code> sous Linux) :</strong> Édition directe de la base SAM (<em>Security Account Manager</em>) dans <code>C:\Windows\System32\config\SAM</code> pour vider le mot de passe d'un compte local.</li>
+            </ul>
+
+            <h2>3. Contre-mesures indispensables pour sécuriser le poste</h2>
+            <p>Pour empêcher un attaquant disposant d'un accès physique à la machine d'accéder aux données ou de modifier les fichiers système[cite: 76], il faut combiner plusieurs niveaux de défense :</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mesure de sécurité</th>
+                        <th>Mécanisme de protection</th>
+                        <th>Effet face à un Live-CD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Chiffrement intégral du disque (BitLocker)</strong></td>
+                        <td>Chiffre l'intégralité de la partition système avec une clé liée à la puce TPM (et/ou un code PIN au démarrage).</td>
+                        <td>La partition est illisible et impossible à modifier sans la clé de récupération : bloque totalement la lecture et le remplacement de fichiers.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mot de passe BIOS / UEFI + Verrouillage de l'ordre de boot</strong></td>
+                        <td>Protège l'accès aux paramètres matériels (F2/F12) et interdit le démarrage sur USB ou CD/DVD externe.</td>
+                        <td>Empêche l'attaquant de lancer un Live-CD Ubuntu ou un support d'installation Windows.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Secure Boot (Démarrage sécurisé)</strong></td>
+                        <td>Vérifie la signature cryptographique du chargeur d'amorçage (bootloader) avant le lancement de l'OS.</td>
+                        <td>Bloque l'exécution de supports d'amorçage non signés ou altérés.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>4. Et sous Linux ou macOS ?</h2>
+            <p>Le problème est <strong>identique sur n'importe quel système d'exploitation</strong> tant que le disque n'est pas chiffré : démarrer sur un Live-CD permet de monter la partition Linux (<code>ext4</code>) et de lire les fichiers de <code>/home</code> ou de réinitialiser le mot de passe <code>root</code> (via <code>chroot</code> et <code>passwd</code>)[cite: 76]. La protection repose là aussi sur le chiffrement complet du volume au niveau matériel/système : <strong>LUKS</strong> sous Linux et <strong>FileVault</strong> sous macOS.</p>
+
+            <h2>5. Énoncé complet du TP (PDF)</h2>
+            <p>Consulte directement le sujet du TP ci-dessous ou <a href="../docs/tp2-intrusion-windows.pdf" target="_blank">ouvre le PDF dans un nouvel onglet</a> :</p>
+            <iframe src="../docs/tp2-intrusion-windows.pdf" class="pdf-cadre" title="TP2 Intrusion simple Windows"></iframe>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>
