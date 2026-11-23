@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours Réseau : L'Adresse IP (IPv4, Masque, ARP, DHCP) | Valentin Georges</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-barre">
+            <a href="../index.html" class="btn btn-secondary">← Retour au Portfolio</a>
+        </nav>
+
+        <header>
+            <h1>L'Adresse IP : Identifier, Localiser, Décider</h1>
+            <p>Format IPv4, binaire, masque de sous-réseau, résolution ARP, NAT, DHCP et diagnostic réseau</p>
+            <span class="badge-header">BTS SIO SISR • Fondamentaux Réseau</span>
+        </header>
+
+        <main class="fiche-cours">
+
+            <h2>1. Adresse MAC vs Adresse IP : Deux identités</h2>
+            <p>Sur un réseau, chaque interface active possède deux adresses complémentaires qui opèrent à des niveaux différents :</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Critère</th>
+                        <th>Adresse MAC (Physique)</th>
+                        <th>Adresse IP (Logique)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Origine</strong></td>
+                        <td>Gravée à l'usine sur la carte réseau (48 bits).</td>
+                        <td>Attribuée par le réseau (DHCP ou fixe).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Modification</strong></td>
+                        <td>Ne change jamais.</td>
+                        <td>Change lorsqu'on change de réseau.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Portée</strong></td>
+                        <td>Locale uniquement (s'arrête au premier routeur).</td>
+                        <td>Globale (traverse les routeurs sur Internet).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rôle</strong></td>
+                        <td>Parler à son voisin direct ou à la passerelle.</td>
+                        <td>Identifier et localiser la machine finale.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>2. Anatomie IPv4 & Binaire</h2>
+            <p>Une adresse IPv4 est codée sur <strong>32 bits</strong> (4 octets de 8 bits séparés par des points), offrant environ $2^{32} \approx 4,3$ milliards d'adresses. Chaque octet varie de <code>0</code> (<code>00000000</code>) à <code>255</code> (<code>11111111</code>).</p>
+            <div class="encadre">
+                <strong>Tableau des poids binaires à connaître par cœur :</strong><br>
+                <code>128 | 64 | 32 | 16 | 8 | 4 | 2 | 1</code><br>
+                <em>Exemple :</em> <code>192</code> = 128 + 64 (<code>11000000</code>) • <code>168</code> = 128 + 32 + 8 (<code>10101000</code>).
+            </div>
+
+            <h2>3. NetID, HostID & Le Masque de sous-réseau</h2>
+            <p>Une adresse IP contient deux parties : la partie réseau (<strong>NetID</strong>) et la partie machine (<strong>HostID</strong>). Le <strong>masque de sous-réseau</strong> (ou notation CIDR, ex. <code>/24</code>) indique où s'arrête le réseau (bits à <code>1</code>) et où commence la machine (bits à <code>0</code>).</p>
+
+            <ul>
+                <li><strong>Adresse réseau (HostID tout à 0) :</strong> Ex. <code>192.168.1.0</code> — désigne le réseau lui-même (interdite sur un poste).</li>
+                <li><strong>Adresse de diffusion / Broadcast (HostID tout à 1) :</strong> Ex. <code>192.168.1.255</code> — permet de parler à toutes les machines du réseau local simultanément (interdite sur un poste).</li>
+                <li><strong>Nombre de machines utilisables :</strong> $2^n - 2$ (où $n$ est le nombre de bits laissés à la partie machine). En <code>/24</code> ($n=8$), il y a $2^8 - 2 = 254$ adresses utilisables (<code>.1</code> à <code>.254</code>).</li>
+            </ul>
+
+            <h2>4. Local ou Distant ? Le ET binaire & ARP</h2>
+            <p>Pour envoyer un paquet, la machine applique <strong>son propre masque</strong> (opération logique <strong>ET binaire</strong> : <code>1 ET 1 = 1</code>, sinon <code>0</code>) à son IP et à l'IP de destination :</p>
+            <ul>
+                <li><strong>Résultat identique → Correspondant LOCAL :</strong> La machine émet une requête <strong>ARP</strong> en diffusion (broadcast) pour obtenir l'adresse MAC du destinataire et lui parle directement.</li>
+                <li><strong>Résultat différent → Correspondant DISTANT :</strong> La machine confie le paquet à sa <strong>passerelle par défaut</strong> (elle utilise l'adresse MAC de la passerelle tout en conservant l'IP finale du serveur distant).</li>
+            </ul>
+            <div class="encadre">
+                <strong>Le masque ne quitte jamais la machine :</strong> Aucun paquet IP ne transporte le masque. Si deux machines sur le même switch ont des masques différents (ex. <code>/24</code> et <code>/25</code>), l'une peut croire l'autre locale (<em>Délai d'attente dépassé</em>) tandis que l'autre la juge distante sans passerelle valide (<em>Impossible de joindre l'hôte de destination</em>).
+            </div>
+
+            <h2>5. Adresses Privées, NAT, DHCP & APIPA</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Plage privée (RFC 1918)</th>
+                        <th>Masque par défaut</th>
+                        <th>Usage courant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>10.0.0.0</code> → <code>10.255.255.255</code></td>
+                        <td><code>/8</code> (255.0.0.0)</td>
+                        <td>Grandes entreprises (16,7 millions d'hôtes).</td>
+                    </tr>
+                    <tr>
+                        <td><code>172.16.0.0</code> → <code>172.31.255.255</code></td>
+                        <td><code>/12</code> (255.240.0.0)</td>
+                        <td>Réseaux intermédiaires (16 réseaux /16 contigus).</td>
+                    </tr>
+                    <tr>
+                        <td><code>192.168.0.0</code> → <code>192.168.255.255</code></td>
+                        <td><code>/16</code> ou <code>/24</code></td>
+                        <td>PME et réseaux domestiques (box Internet).</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ul>
+                <li><strong>NAT (Network Address Translation) :</strong> Les adresses privées ne circulent pas sur Internet. Le routeur remplace l'IP privée source par son <strong>adresse IP publique</strong> unique et mémorise la correspondance.</li>
+                <li><strong>DHCP vs IP Fixe :</strong> Le DHCP prête temporairement (<em>bail</em>) une IP, un masque, une passerelle et un DNS aux postes clients. On réserve l'<strong>IP fixe</strong> (ou réservation DHCP) aux serveurs, imprimantes, routeurs et switches.</li>
+                <li><strong>APIPA (<code>169.254.x.x</code>) :</strong> Si une machine configurée en DHCP reçoit une adresse en <code>169.254.x.x</code> sans passerelle, le serveur DHCP n'a pas répondu (vérifier le câble, le VLAN du port ou le service DHCP).</li>
+                <li><strong>IPv6 :</strong> Codé sur <strong>128 bits</strong> en hexadécimal (ex. <code>2001:db8::1</code>) pour pallier la pénurie d'adresses IPv4.</li>
+            </ul>
+
+            <h2>6. Support de cours complet (PDF)</h2>
+            <p>Consulte directement le support complet avec exercices corrigés ci-dessous ou <a href="../docs/cours-adresse-ip.pdf" target="_blank">ouvre le PDF dans un nouvel onglet</a> :</p>
+            <iframe src="../docs/cours-adresse-ip.pdf" class="pdf-cadre" title="Cours Adresse IP BTS SIO SISR"></iframe>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+        </footer>
+    </div>
+
+</body>
+</html>
