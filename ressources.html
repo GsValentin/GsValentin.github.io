@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ressources & Commandes Utiles | Valentin Georges</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Barre de navigation */
+        .top-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .top-nav .btn {
+            flex: 0 1 auto;
+        }
+
+        /* Barre de recherche */
+        .search-box {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .search-box:focus {
+            border-color: var(--accent-caramel);
+        }
+
+        /* Sections par catégorie */
+        .category-title {
+            color: var(--accent-caramel);
+            font-size: 1.3rem;
+            margin: 2.2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        /* Ligne de commande */
+        .cmd-item {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.85rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: border-color 0.2s;
+        }
+        .cmd-item:hover {
+            border-color: var(--border-accent);
+        }
+        .cmd-info {
+            flex: 1;
+            min-width: 240px;
+        }
+        .cmd-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.35rem;
+        }
+        .copy-btn {
+            background-color: var(--accent-subtle);
+            color: var(--accent-caramel);
+            border: 1px solid var(--border-accent);
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: var(--accent-caramel);
+            color: #120F0D;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- BOUTONS DE NAVIGATION -->
+        <nav class="top-nav">
+            <a href="index.html" class="btn btn-secondary">← Portfolio</a>
+            <a href="ressources.html" class="btn btn-primary">Ressources Utiles</a>
+        </nav>
+
+        <header>
+            <h1>Ressources & Commandes</h1>
+            <p>Mémo rapide Windows, Réseau, Active Directory et Linux</p>
+            <span class="badge-header">Boîte à outils • Helpdesk & SISR</span>
+        </header>
+
+        <!-- BARRE DE RECHERCHE INSTANTANÉE -->
+        <input type="text" id="searchInput" class="search-box" placeholder="Rechercher une commande ou un mot-clé (ex: réseau, ip, ad, grep, ncpa)...">
+
+        <main id="cmdList">
+
+            <!-- CATÉGORIE 1 : RACCOURCIS WINDOWS (WIN + R) -->
+            <h2 class="category-title">Raccourcis Console Windows (Win + R)</h2>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>ncpa.cpl</code>
+                    <p class="cmd-desc">Ouvre directement les connexions réseau (cartes Ethernet, Wi-Fi, configuration IPv4).</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'ncpa.cpl')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>appwiz.cpl</code>
+                    <p class="cmd-desc">Ouvre la fenêtre « Programmes et fonctionnalités » pour désinstaller une application.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'appwiz.cpl')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>lusrmgr.msc</code>
+                    <p class="cmd-desc">Gestion des utilisateurs et groupes locaux Windows (hors domaine).</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'lusrmgr.msc')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>dsa.msc</code>
+                    <p class="cmd-desc">Ouvre la console Utilisateurs et ordinateurs Active Directory (ADUC).</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'dsa.msc')">Copier</button>
+            </div>
+
+            <!-- CATÉGORIE 2 : RÉSEAU & DIAGNOSTIC WINDOWS -->
+            <h2 class="category-title">Réseau & Diagnostic (CMD / PowerShell)</h2>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>ipconfig /flushdns</code>
+                    <p class="cmd-desc">Vide le cache de résolution DNS local en cas de changement d'IP ou de problème d'accès.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'ipconfig /flushdns')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>gpupdate /force</code>
+                    <p class="cmd-desc">Force l'actualisation immédiate des stratégies de groupe (GPO) utilisateur et ordinateur.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'gpupdate /force')">Copier</button>
+            </div>
+
+            <!-- CATÉGORIE 3 : LINUX (DEBIAN / UBUNTU) -->
+            <h2 class="category-title">Administration Linux (Debian / Ubuntu)</h2>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>ip a</code>
+                    <p class="cmd-desc">Affiche les interfaces réseau et leurs adresses IP attribuées.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'ip a')">Copier</button>
+            </div>
+
+            <div class="cmd-item">
+                <div class="cmd-info">
+                    <code>grep -rnw '/var/log/' -e 'erreur'</code>
+                    <p class="cmd-desc">Recherche récursive d'un mot exact avec numéro de ligne dans les logs.</p>
+                </div>
+                <button class="copy-btn" onclick="copyCmd(this, 'grep -rnw \'/var/log/\' -e \'erreur\'')">Copier</button>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>© 2026 Valentin Georges — Ressources & Commandes SISR</p>
+        </footer>
+    </div>
+
+    <!-- PETIT SCRIPT POUR COPIER ET FILTRER INSTANTANÉMENT -->
+    <script>
+        function copyCmd(btn, text) {
+            navigator.clipboard.writeText(text);
+            const original = btn.innerText;
+            btn.innerText = "Copié !";
+            setTimeout(() => btn.innerText = original, 1500);
+        }
+
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const filter = this.value.toLowerCase();
+            const items = document.querySelectorAll('.cmd-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(filter) ? 'flex' : 'none';
+            });
+        });
+    </script>
+
+</body>
+</html>
