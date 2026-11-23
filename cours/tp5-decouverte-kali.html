@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      TP Découverte Kali Linux (macchanger & Nmap/Zenmap) | Valentin Georges
+    </title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav-barre">
+        <a href="../index.html" class="btn btn-secondary"
+          >← Retour au Portfolio</a
+        >
+      </nav>
+
+      <header>
+        <h1>Découverte de Kali Linux : Reconnaissance & Usurpation MAC</h1>
+        <p>
+          Manipulation de macchanger et Zenmap/Nmap en environnement isolé,
+          analyse des risques et contre-mesures
+        </p>
+        <span class="badge-header"
+          >BTS SIO SISR • Bloc 3 • Cybersécurité Offensive & Défensive</span
+        >
+      </header>
+
+      <main class="fiche-cours">
+        <div class="encadre">
+          <strong>Cadre légal (Art. 323-1 du Code pénal) :</strong> Les outils
+          de test d'intrusion intégrés à Kali Linux ne doivent être utilisés que
+          sur un périmètre isolé (machines virtuelles de TP) ou sur des cibles
+          explicitement autorisées comme <code>scanme.nmap.org</code>.
+        </div>
+
+        <h2>1. Usurpation d'adresse MAC avec macchanger</h2>
+        <p>
+          Situé dans la catégorie
+          <em>Information Gathering / Sniffing & Spoofing</em> de Kali Linux,
+          l'utilitaire <code>macchanger</code> permet de modifier temporairement
+          l'adresse physique (MAC) d'une carte réseau au niveau du système
+          d'exploitation.
+        </p>
+        <pre><code># 1. Désactiver l'interface réseau
+sudo ip link set eth0 down
+
+# 2. Attribuer une adresse MAC aléatoire (ou -m XX:XX:XX:XX:XX:XX pour une MAC ciblée)
+sudo macchanger -r eth0
+
+# 3. Réactiver l'interface réseau
+sudo ip link set eth0 up</code></pre>
+
+        <ul>
+          <li>
+            <strong>Dangers :</strong> Contournement d'un filtrage par adresse
+            MAC (Wi-Fi ou switch), usurpation d'identité sur le réseau local,
+            saturation de la table CAM d'un commutateur (MAC Flooding) ou
+            épuisement d'un serveur DHCP.
+          </li>
+          <li>
+            <strong>Contre-mesures :</strong> Activer le
+            <strong>Port Security</strong> sur les commutateurs Cisco (<code
+              >switchport port-security</code
+            >), déployer l'authentification réseau
+            <strong>802.1X</strong> (RADIUS) et activer le
+            <strong>DHCP Snooping</strong>.
+          </li>
+        </ul>
+
+        <h2>2. Cartographie réseau avec Zenmap (zenmap-kbx / Nmap)</h2>
+        <p>
+          L'application <code>zenmap-kbx</code> lance
+          <strong>Zenmap</strong> (l'interface graphique de
+          <strong>Nmap</strong>) dans un environnement conteneurisé Kaboxer.
+          Elle permet d'automatiser la phase de
+          <strong>reconnaissance active</strong> sur un réseau :
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Fonctionnalité Nmap / Zenmap</th>
+              <th>Option CLI</th>
+              <th>Information révélée</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Découverte d'hôtes</strong></td>
+              <td><code>nmap -sn 192.168.1.0/24</code></td>
+              <td>
+                Liste les machines allumées qui répondent sur le sous-réseau.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Scan furtif TCP SYN</strong></td>
+              <td><code>sudo nmap -sS &lt;IP&gt;</code></td>
+              <td>
+                Identifie les ports TCP ouverts, fermés ou filtrés sans terminer
+                la poignée de main TCP.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Détection de versions & OS</strong></td>
+              <td><code>sudo nmap -sV -O &lt;IP&gt;</code></td>
+              <td>
+                Détermine les logiciels exacts en écoute et le système
+                d'exploitation cible.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ul>
+          <li>
+            <strong>Dangers :</strong> Permet à un attaquant d'identifier la
+            surface d'attaque (ports ouverts, services obsolètes ou non
+            chiffrés) avant de rechercher des failles exploitables.
+          </li>
+          <li>
+            <strong>Contre-mesures :</strong> Fermer tous les ports inutiles via
+            un <strong>pare-feu</strong> (Windows Defender Firewall,
+            <code>ufw</code>/<code>nftables</code>), segmenter le réseau en
+            <strong>VLANs filtrés par ACL</strong> et déployer une sonde
+            <strong>IDS/IPS</strong> (Suricata, Fail2Ban).
+          </li>
+        </ul>
+
+        <h2>3. Compte-rendu complet du TP (PDF)</h2>
+        <p>
+          Consulte directement le rendu complet avec captures d'écran ci-dessous
+          ou
+          <a href="../docs/tp5-decouverte-kali.pdf" target="_blank"
+            >ouvre le PDF dans un nouvel onglet</a
+          >
+          :
+        </p>
+        <iframe
+          src="../docs/tp5-decouverte-kali.pdf"
+          class="pdf-cadre"
+          title="TP Découverte Kali Linux"
+        ></iframe>
+      </main>
+
+      <footer>
+        <p>© 2026 Valentin Georges — Fiches de cours BTS SIO SISR</p>
+      </footer>
+    </div>
+  </body>
+</html>
