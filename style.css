@@ -1,577 +1,549 @@
-/* ==========================================================================
-   DESIGN SYSTEM "ESPRESSO & CARAMEL" (INSPIRATION FINARY)
-   ========================================================================== */
+/* =========================================================
+   VARIABLES DE THÈMES (CAFÉ PAR DÉFAUT + CLAIR, SOMBRE, BLEU/ORANGE)
+   ========================================================= */
 :root {
-  /* Fonds (Brun profond & Espresso) */
-  --bg-main: #120f0d; /* Fond principal très sombre et chaud */
-  --bg-surface: #1a1613; /* Fond des cartes et panneaux */
-  --bg-surface-hover: #221d19; /* Survol des cartes */
-  --bg-code: #0d0b09; /* Fond des blocs de code */
-
-  /* Textes (Crème, Lin & Taupe) */
-  --text-primary: #f5efe6; /* Blanc crème doux (lisible sans agresser) */
-  --text-secondary: #b8ada1; /* Beige grisé / taupe pour les descriptions */
-  --text-muted: #7d7267; /* Brun clair discret */
-
-  /* Accents (Caramel, Or doux & Sable) */
-  --accent-caramel: #d4a373; /* Caramel signature */
-  --accent-hover: #e2b68a; /* Caramel éclairci au survol */
-  --accent-subtle: rgba(212, 163, 115, 0.12); /* Teinte de fond légère */
-
-  /* Bordures & Ombres */
-  --border-subtle: #2c2520;
-  --border-accent: rgba(212, 163, 115, 0.45);
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+    /* Thème 1 : Café / Espresso & Caramel (Défaut) */
+    --bg-primary: #f5efe6;
+    --bg-secondary: #fdfaf6;
+    --bg-card: #ffffff;
+    --bg-code: #2c1810;
+    --text-code: #f5efe6;
+    --text-primary: #2c1810;
+    --text-secondary: #5c4033;
+    --text-muted: #7a5c49;
+    --accent-primary: #6f4e37;
+    --accent-hover: #523826;
+    --accent-secondary: #d4a373;
+    --border-color: #e6d5c3;
+    --tag-bg: #efe3d3;
+    --tag-text: #5c3a21;
+    --shadow: 0 4px 14px rgba(44, 24, 16, 0.08);
 }
 
-/* --- Réinitialisation & Base --- */
+[data-theme="clair"] {
+    /* Thème 2 : Clair Épuré (Blanc & Ardoise) */
+    --bg-primary: #f4f6f9;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --bg-code: #1e293b;
+    --text-code: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --accent-primary: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-secondary: #93c5fd;
+    --border-color: #cbd5e1;
+    --tag-bg: #e2e8f0;
+    --tag-text: #1e293b;
+    --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+[data-theme="sombre"] {
+    /* Thème 3 : Sombre OLED / Anthracite */
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-card: #242424;
+    --bg-code: #0a0a0a;
+    --text-code: #e2e8f0;
+    --text-primary: #f3f4f6;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --accent-primary: #bb86fc;
+    --accent-hover: #9a67ea;
+    --accent-secondary: #03dac6;
+    --border-color: #333333;
+    --tag-bg: #2e2e2e;
+    --tag-text: #e5e7eb;
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="bleu-orange"] {
+    /* Thème 4 : Bleu Marine & Orange (Tech / Réseau) */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --bg-code: #090d16;
+    --text-code: #38bdf8;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --accent-primary: #f97316;
+    --accent-hover: #ea580c;
+    --accent-secondary: #38bdf8;
+    --border-color: #334155;
+    --tag-bg: #0f172a;
+    --tag-text: #fb923c;
+    --shadow: 0 4px 16px rgba(2, 6, 23, 0.5);
+}
+
+/* =========================================================
+   BASE & MISE EN PAGE GÉNÉRALE
+   ========================================================= */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family:
-    "Inter",
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
-  background-color: var(--bg-main);
-  color: var(--text-primary);
-  line-height: 1.65;
-  padding: 3rem 1.25rem;
-  -webkit-font-smoothing: antialiased;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    padding: 1.5rem 1rem;
 }
 
 .container {
-  max-width: 980px;
-  margin: 0 auto;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
-/* --- Typographie globale --- */
-h1,
-h2,
-h3,
-h4 {
-  color: var(--text-primary);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-a {
-  color: var(--accent-caramel);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--accent-hover);
-}
-
-/* --- Barre de navigation supérieure --- */
+/* =========================================================
+   BARRE DE NAVIGATION & SÉLECTEUR DE THÈME
+   ========================================================= */
 .nav-barre {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
-.nav-barre.nav-droite {
-  justify-content: flex-end;
+.nav-droite {
+    justify-content: flex-end;
 }
 
-.nav-barre .btn {
-  flex: 0 1 auto;
+.theme-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    box-shadow: var(--shadow);
 }
 
-/* --- En-tête (Header) --- */
+.theme-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+    padding: 0;
+}
+
+.theme-btn:hover {
+    transform: scale(1.15);
+}
+
+.theme-btn.active {
+    border-color: var(--text-primary);
+    transform: scale(1.15);
+}
+
+/* Pastilles de couleurs des 4 boutons */
+.theme-btn[data-set-theme="cafe"] { background: linear-gradient(135deg, #6f4e37 50%, #f5efe6 50%); }
+.theme-btn[data-set-theme="clair"] { background: linear-gradient(135deg, #2563eb 50%, #f8fafc 50%); }
+.theme-btn[data-set-theme="sombre"] { background: linear-gradient(135deg, #121212 50%, #bb86fc 50%); }
+.theme-btn[data-set-theme="bleu-orange"] { background: linear-gradient(135deg, #0f172a 50%, #f97316 50%); }
+
+/* =========================================================
+   EN-TÊTE (HEADER)
+   ========================================================= */
 header {
-  text-align: center;
-  margin-bottom: 3.5rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--border-subtle);
+    text-align: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
 }
 
 header h1 {
-  font-size: 2.4rem;
-  margin-bottom: 0.6rem;
-  background: linear-gradient(135deg, #f5efe6 30%, #d4a373 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
 }
 
 header p {
-  color: var(--text-secondary);
-  font-size: 1.05rem;
-  max-width: 600px;
-  margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
 }
 
 .badge-header {
-  display: inline-block;
-  background-color: var(--accent-subtle);
-  color: var(--accent-caramel);
-  border: 1px solid var(--border-accent);
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-top: 1.25rem;
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border: 1px solid var(--border-color);
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
-/* --- Grille & Cartes Projets (Portfolio) --- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 1.5rem;
-}
-
-.card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: var(--shadow-card);
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    background-color 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  background-color: var(--bg-surface-hover);
-  border-color: var(--border-accent);
-}
-
-.card h2,
-.card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.6rem;
-}
-
-.card p {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  margin-bottom: 1.5rem;
-}
-
-/* --- Étiquettes (Tags) --- */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-bottom: 1.6rem;
-}
-
-.tag {
-  background-color: var(--bg-main);
-  color: var(--accent-caramel);
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.65rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-subtle);
-}
-
-/* --- Boutons d'action --- */
-.links {
-  display: flex;
-  gap: 0.75rem;
-}
-
+/* =========================================================
+   BOUTONS
+   ========================================================= */
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0.6rem 1.1rem;
-  border-radius: 8px;
-  flex: 1;
-  cursor: pointer;
-  transition: all 0.2s ease;
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
 }
 
 .btn-primary {
-  background-color: var(--accent-caramel);
-  color: #120f0d;
-  border: 1px solid var(--accent-caramel);
+    background-color: var(--accent-primary);
+    color: #ffffff;
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
-  border-color: var(--accent-hover);
-  color: #120f0d;
+    background-color: var(--accent-hover);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-  background-color: var(--accent-subtle);
-  border-color: var(--accent-caramel);
-  color: var(--accent-caramel);
+    background-color: var(--tag-bg);
 }
 
-/* --- Tableaux & Blocs de code --- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1.5rem 0;
-  background-color: var(--bg-surface);
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
+/* =========================================================
+   CARTES ACCORDÉONS (INDEX.HTML)
+   ========================================================= */
+.grille-blocs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
 }
 
-th,
-td {
-  padding: 0.85rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border-subtle);
-  font-size: 0.9rem;
-}
-
-th {
-  background-color: var(--bg-surface-hover);
-  color: var(--accent-caramel);
-  font-weight: 600;
-}
-
-pre,
-code {
-  font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
-  background-color: var(--bg-code);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  font-size: 0.88rem;
-}
-
-code {
-  padding: 0.15rem 0.4rem;
-  color: var(--accent-caramel);
-}
-
-pre {
-  padding: 1.1rem;
-  overflow-x: auto;
-  margin: 1.25rem 0;
-  color: var(--text-primary);
-}
-
-pre code {
-  border: none;
-  padding: 0;
-  background: none;
-  color: inherit;
-}
-
-/* ==========================================================================
-   COMPOSANTS RÉUTILISABLES : FICHES DE COURS & TP (.fiche-cours)
-   ========================================================================== */
-.fiche-cours {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 14px;
-  padding: 2.25rem;
-  box-shadow: var(--shadow-card);
-}
-
-.fiche-cours h2 {
-  color: var(--accent-caramel);
-  font-size: 1.35rem;
-  margin: 2.2rem 0 1rem 0;
-  padding-bottom: 0.45rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.fiche-cours h2:first-child {
-  margin-top: 0;
-}
-
-.fiche-cours h3 {
-  color: var(--text-primary);
-  font-size: 1.1rem;
-  margin: 1.5rem 0 0.6rem 0;
-}
-
-.fiche-cours p {
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-}
-
-.fiche-cours ul,
-.fiche-cours ol {
-  margin-left: 1.5rem;
-  margin-bottom: 1.25rem;
-  color: var(--text-secondary);
-}
-
-.fiche-cours li {
-  margin-bottom: 0.45rem;
-}
-
-/* Encadré d'alerte / astuce / règle importante */
-.encadre {
-  background-color: var(--accent-subtle);
-  border-left: 3px solid var(--accent-caramel);
-  padding: 1rem 1.25rem;
-  border-radius: 0 8px 8px 0;
-  margin: 1.25rem 0;
-  color: var(--text-primary);
-  font-size: 0.92rem;
-}
-
-.encadre strong {
-  color: var(--accent-caramel);
-}
-
-/* Captures d'écran & Schémas dans un cours */
-.image-cours {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  border: 1px solid var(--border-subtle);
-  margin: 1.25rem 0;
-  display: block;
-}
-
-/* Lecteur PDF intégré */
-.pdf-cadre {
-  width: 100%;
-  height: 650px;
-  border: 1px solid var(--border-subtle);
-  border-radius: 10px;
-  margin-top: 1rem;
-}
-
-/* ==========================================================================
-   COMPOSANTS RÉUTILISABLES : PAGE RESSOURCES & COMMANDES
-   ========================================================================== */
-.barre-recherche {
-  width: 100%;
-  padding: 0.9rem 1.2rem;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 10px;
-  color: var(--text-primary);
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.barre-recherche:focus {
-  border-color: var(--accent-caramel);
-}
-
-.categorie-titre {
-  color: var(--accent-caramel);
-  font-size: 1.3rem;
-  margin: 2.2rem 0 1rem 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.commande-ligne {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 10px;
-  padding: 1rem 1.25rem;
-  margin-bottom: 0.85rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  transition: border-color 0.2s;
-}
-
-.commande-ligne:hover {
-  border-color: var(--border-accent);
-}
-
-.commande-info {
-  flex: 1;
-  min-width: 240px;
-}
-
-.commande-desc {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-top: 0.35rem;
-}
-
-.btn-copier {
-  background-color: var(--accent-subtle);
-  color: var(--accent-caramel);
-  border: 1px solid var(--border-accent);
-  padding: 0.45rem 0.9rem;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-copier:hover {
-  background-color: var(--accent-caramel);
-  color: #120f0d;
-}
-
-/* --- Pied de page (Footer) --- */
-footer {
-  text-align: center;
-  margin-top: 4.5rem;
-  padding-top: 1.75rem;
-  border-top: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-/* ==========================================================================
-   CARTES DE COURS DÉPLIABLES (ACCORDÉON NATIF)
-   ========================================================================== */
 details.card {
-  padding: 0;
-  cursor: pointer;
-  overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s ease;
+}
+
+details.card[open] {
+    border-color: var(--accent-primary);
 }
 
 details.card summary {
-  list-style: none;
-  padding: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  position: relative;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 details.card summary::-webkit-details-marker {
-  display: none;
+    display: none;
 }
 
-/* Indicateur visuel (+ / −) en bas à droite, aligné avec les tags */
-details.card summary::after {
-  content: "+";
-  position: absolute;
-  bottom: 1.65rem;
-  right: 1.75rem;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background-color: var(--accent-subtle);
-  color: var(--accent-caramel);
-  border: 1px solid var(--border-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 600;
-  transition:
-    transform 0.25s ease,
-    background-color 0.2s ease;
+details.card summary h2 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
 }
 
-details.card[open] summary::after {
-  content: "−";
-  background-color: var(--accent-caramel);
-  color: #120f0d;
+details.card summary p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
 }
 
-details.card summary .tags {
-  margin-bottom: 0;
-  padding-right: 2.5rem; /* Évite qu'un tag ne passe sous le bouton + */
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
-/* Contenu qui apparaît quand on clique sur la carte */
+.tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
 .card-liste-cours {
-  padding: 1.25rem 1.75rem 1.75rem 1.75rem;
-  border-top: 1px solid var(--border-subtle);
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  cursor: default;
-  background-color: rgba(0, 0, 0, 0.15);
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.75rem;
 }
 
 .card-liste-cours .btn {
-  justify-content: flex-start;
-  text-align: left;
-}
-/* Grille côte à côte pour afficher 2 PDF sur la même page */
-.pdf-grille {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.25rem;
+    text-align: left;
 }
 
-.pdf-grille .pdf-cadre {
-  margin-top: 0.5rem;
-  height: 620px;
+.cours-vide {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
 }
 
-.pdf-colonne h3 {
-  margin-top: 0;
-  font-size: 1.05rem;
-  color: var(--text-primary);
-}
 /* =========================================================
-   GALERIE & CAPTURES D'ÉCRAN DANS LES FICHES DE COURS
+   FICHES DE COURS (COURS/*.HTML)
    ========================================================= */
+.fiche-cours {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.fiche-cours h2 {
+    font-size: 1.35rem;
+    color: var(--accent-primary);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.fiche-cours h2:first-child {
+    margin-top: 0;
+}
+
+.fiche-cours h3 {
+    font-size: 1.1rem;
+    margin: 1.25rem 0 0.5rem;
+    color: var(--text-primary);
+}
+
+.fiche-cours p, .fiche-cours li {
+    color: var(--text-secondary);
+    margin-bottom: 0.65rem;
+}
+
+.fiche-cours ul, .fiche-cours ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.fiche-cours a {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.encadre {
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--accent-primary);
+    padding: 1rem 1.25rem;
+    border-radius: 0 10px 10px 0;
+    margin: 1.25rem 0;
+    color: var(--text-primary);
+}
+
+/* Blocs de code */
+pre {
+    background: var(--bg-code);
+    color: var(--text-code);
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+}
+
+code {
+    font-family: 'Consolas', 'Fira Code', monospace;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* Tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+}
+
+th {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-weight: 700;
+}
+
+/* Intégration PDF */
+.pdf-cadre {
+    width: 100%;
+    height: 620px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-top: 0.75rem;
+}
+
+.pdf-grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+/* Galerie & Captures d'écran */
 .capture-figure {
-  margin: 1.5rem 0;
-  background: var(--bg-secondary, #fdfaf6);
-  border: 1px solid var(--border-color, #e6d5c3);
-  border-radius: 12px;
-  padding: 0.75rem;
-  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.06);
-  text-align: center;
+    margin: 1.5rem 0;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+    text-align: center;
 }
 
 .capture-figure img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-  margin: 0 auto;
-  cursor: zoom-in;
-  transition: transform 0.2s ease;
-}
-
-.capture-figure img:hover {
-  transform: scale(1.01);
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    cursor: zoom-in;
 }
 
 .capture-legende {
-  margin-top: 0.65rem;
-  font-size: 0.9rem;
-  color: var(--text-muted, #6f4e37);
-  font-style: italic;
+    margin-top: 0.65rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
 }
 
-/* Grille pour afficher 2 captures d'écran côte à côte */
 .captures-grille {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0;
 }
 
 .captures-grille .capture-figure {
-  margin: 0;
+    margin: 0;
+}
+
+/* =========================================================
+   PAGE RESSOURCES & COMMANDES (RESSOURCES.HTML)
+   ========================================================= */
+.barre-recherche {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.categorie-titre {
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    margin: 1.75rem 0 0.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.commande-ligne {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.85rem 1.1rem;
+    margin-bottom: 0.65rem;
+    box-shadow: var(--shadow);
+}
+
+.commande-info code {
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.commande-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.btn-copier {
+    background: var(--accent-primary);
+    color: #ffffff;
+    border: none;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-copier:hover {
+    background: var(--accent-hover);
+}
+
+/* =========================================================
+   PIED DE PAGE (FOOTER)
+   ========================================================= */
+footer {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+@media (max-width: 600px) {
+    .fiche-cours {
+        padding: 1.25rem;
+    }
+    .commande-ligne {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .btn-copier {
+        width: 100%;
+    }
 }
