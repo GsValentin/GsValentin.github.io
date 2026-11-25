@@ -11,8 +11,8 @@
     --text-primary: #f5f3ef;
     --text-secondary: #c7c2b8;
     --text-muted: #8c857b;
-    --accent-primary: #e8b149dd;
-    --accent-hover: #c1820bd2;
+    --accent-primary: #e5a93c;
+    --accent-hover: #f2bc57;
     --accent-text-on-btn: #141210;
     --border-color: #2e2b26;
     --tag-bg: #29251f;
@@ -305,12 +305,12 @@ header p {
 }
 
 /* =========================================================
-   CARTES ACCORDÉONS & ESPACEMENT DES MATIÈRES (INDEX.HTML)
+   CARTES MATIÈRES & PROJETS (FIXES, SANS ACCORDÉON)
    ========================================================= */
 .section-titre {
     font-size: 1.3rem;
     color: var(--accent-primary);
-    margin-top: 2.5rem;
+    margin-top: 2.75rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border-color);
@@ -320,26 +320,104 @@ header p {
     margin-top: 0;
 }
 
-.grille-blocs {
+.grille-blocs,
+.grille-projets {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     margin-bottom: 2.5rem;
 }
 
-details.card {
+.card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 14px;
     padding: 1.5rem 1.75rem;
-    margin-bottom: 1.5rem; /* Force l'espace même sans .grille-blocs */
+    margin-bottom: 1.5rem;
     box-shadow: var(--shadow-md);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-/* Évite de doubler l'espace si .grille-blocs est déjà actif */
-.grille-blocs details.card {
+.grille-blocs .card,
+.grille-projets .card {
     margin-bottom: 0;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-primary);
+}
+
+/* Neutralise le comportement cliquable si la balise <details>/<summary> est encore présente */
+.card summary {
+    list-style: none;
+    pointer-events: none;
+    cursor: default;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card summary::-webkit-details-marker {
+    display: none;
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+}
+
+.card p {
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.85rem;
+}
+
+.card summary p {
+    margin-bottom: 0;
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.card summary .tags {
+    margin-bottom: 0;
+}
+
+.tag {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border: 1px solid var(--border-color);
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.card-liste-cours {
+    margin-top: 1.15rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--border-color);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.8rem;
+}
+
+.card-liste-cours .btn {
+    text-align: left;
+}
+
+.cours-vide {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
 }
 
 /* =========================================================
