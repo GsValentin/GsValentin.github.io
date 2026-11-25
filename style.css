@@ -305,97 +305,41 @@ header p {
 }
 
 /* =========================================================
-   CARTES ACCORDÉONS (INDEX.HTML)
+   CARTES ACCORDÉONS & ESPACEMENT DES MATIÈRES (INDEX.HTML)
    ========================================================= */
 .section-titre {
     font-size: 1.3rem;
     color: var(--accent-primary);
-    margin-bottom: 1.1rem;
-    padding-bottom: 0.45rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border-color);
+}
+
+.section-titre:first-of-type {
+    margin-top: 0;
 }
 
 .grille-blocs {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
 }
 
 details.card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 14px;
-    padding: 1.35rem 1.5rem;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.5rem; /* Force l'espace même sans .grille-blocs */
     box-shadow: var(--shadow-md);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-details.card:hover {
-    box-shadow: var(--shadow-hover);
-}
-
-details.card[open] {
-    border-color: var(--accent-primary);
-}
-
-details.card summary {
-    list-style: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-details.card summary::-webkit-details-marker {
-    display: none;
-}
-
-details.card summary h2 {
-    font-size: 1.25rem;
-    color: var(--text-primary);
-    margin-bottom: 0.25rem;
-}
-
-details.card summary p {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-}
-
-.tags {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.tag {
-    background: var(--tag-bg);
-    color: var(--tag-text);
-    border: 1px solid var(--border-color);
-    padding: 0.25rem 0.65rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.card-liste-cours {
-    margin-top: 1.25rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--border-color);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 0.8rem;
-}
-
-.card-liste-cours .btn {
-    text-align: left;
-}
-
-.cours-vide {
-    color: var(--text-muted);
-    font-style: italic;
-    font-size: 0.9rem;
+/* Évite de doubler l'espace si .grille-blocs est déjà actif */
+.grille-blocs details.card {
+    margin-bottom: 0;
 }
 
 /* =========================================================
